@@ -219,3 +219,39 @@ print_nodes(a)
 print("Target ", target, " is present in Singly Linked List: ", target_found(a, target))
 
 
+# Problem 5: Getting the value of a singly linked list node value at a perticular index
+
+# Iterative approach
+# def get_index_value(head: Node, index: int):
+    
+#     current = head
+#     count = 0
+#     while(current is not None):
+#         if(count == index): 
+#             return current.value
+
+#         current = current.next
+#         count+=1
+        
+#     return "Index out of Bound"
+
+#     # Time: O(n)
+#     # Space: O(1)
+
+
+# Recursion approach
+def get_index_value(node: Node, index: int):
+    
+    if index == 0: return node.value
+    if (node is None): return "Index out of bound"
+    
+    return get_index_value(node.next, index-1)
+    
+    # Time: O(n)
+    # Space: O(n)
+
+print()
+print_nodes(a)
+index = 3
+print("Value of node at index ", index, " is: ", get_index_value(a, index))
+
