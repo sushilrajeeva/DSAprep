@@ -119,6 +119,7 @@ def fillList(node: Node, values: list):
     
 
 print()
+print("************ Converting Linked List to ArrayList ************")
 print("Singly Linked List to List with same order : ")
 print(SinglyLinkedList_To_List(a))
 
@@ -165,6 +166,7 @@ def getLinkedListSum(head: Node) -> int:
     
 print()
 print_nodes(a)
+print("************ Sum of all Linked List elements ************")
 print("Sum of the above Singly Linked List of numbers is: ")
 print(getLinkedListSum(a))
 
@@ -215,6 +217,7 @@ def target_found(node: Node, target) -> bool:
     #Space: O(n)
 
 print()
+print("************ Find an element in Linked List ************")
 print_nodes(a)
 print("Target ", target, " is present in Singly Linked List: ", target_found(a, target))
 
@@ -251,6 +254,7 @@ def get_index_value(node: Node, index: int):
     # Space: O(n)
 
 print()
+print("************ Getting value of a Linked List element at a certian Index ************")
 print_nodes(a)
 index = 3
 print("Value of node at index ", index, " is: ", get_index_value(a, index))
@@ -319,6 +323,7 @@ c.next = d
 d.next = e
     
 print()
+print("************ Reversing a Linked List ************")
 print("Given Linked list: ")
 print_nodes(a)
 reversed_head = reverseLinkedList(a)
@@ -363,6 +368,9 @@ def zipper_linked_list(head1: Node, head2: Node) -> Node:
         
     return head1
 
+    # Time: O(n)
+    # Space: O(1)
+
             
             
         
@@ -394,6 +402,7 @@ t.next = u
 u.next = v
     
 print()
+print("************ Zipping Two Lists ************")
 print("Given Linked list1: ")
 print_nodes(a)
 
@@ -408,5 +417,42 @@ print_nodes(zipper_linked_list(a, p))
 
         
         
+# problem 8: (Slow and Fast pointer method)
+# Find Middle of the Linked List / split the linked list in two halves
+
+
+# Note: Distanc covered by fast pointer = 2 * Distance covered by slow pointer
+
+def mid_finder(head: Node):
     
+    slow = head
+    fast = head
+    
+    while(fast is not None and fast.next is not None):
+        slow = slow.next
+        fast = fast.next.next 
+        
+    return slow.value
+
+
+a = Node('A')
+b = Node('B')
+c = Node('C')
+d = Node('D')
+e = Node('E')
+f = Node('F')
+
+a.next = b
+b.next = c
+c.next = d
+d.next = e
+e.next = f
+
+print()
+print("************ Mid Element of Linked List ************")
+print("Given List: ")
+print_nodes(a)
+
+print()
+print("Mid of this Linked List is: ", mid_finder(a))
 
