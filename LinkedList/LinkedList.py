@@ -255,3 +255,77 @@ print_nodes(a)
 index = 3
 print("Value of node at index ", index, " is: ", get_index_value(a, index))
 
+
+# Problem 6: 
+# Reverese a linked list
+
+# A -> B -> C -> D -> E -> None after reverse E -> D -> C -> B -> A -> None
+
+#Iterative Approach
+
+# def reverseLinkedList(head: Node) -> Node:
+    
+#     previous = None  # Initialize previous pointer to None
+#     current = head   # Start with the head node
+    
+#     while(current is not None):
+        
+#         next = current.next  # Temporarily store the next node
+        
+#         current.next = previous  # Reverse the current node's pointer
+        
+#         previous = current  # Move the previous pointer forward
+#         current = next      # Move the current pointer forward
+    
+#     # At the end, previous points to the new head of the reversed list
+#     return previous
+
+#     # Time: O(n)
+#     # Space: O(1)
+
+
+# Recursion Approach
+
+def reverseLinkedList(current: Node, previous=None) -> Node:
+    
+    # Base case: If we've reached the end of the list, return the last node
+    if current is None:
+        return previous
+    
+    # Save the next node before overwriting current's next pointer
+    next = current.next
+    
+    # Reverse the current node's pointer
+    current.next = previous
+    
+    # Recursive call with the next node and the current node as the new "previous"
+    return reverseLinkedList(next, current)
+
+    # Time: O(n)
+    # Space: O(n)
+
+    
+    
+
+a = Node('A')
+b = Node('B')
+c = Node('C')
+d = Node('D')
+e = Node('E')
+
+a.next = b
+b.next = c
+c.next = d
+d.next = e
+    
+print()
+print("Given Linked list: ")
+print_nodes(a)
+reversed_head = reverseLinkedList(a)
+print("Reversed Linked list: ")
+print_nodes(reversed_head)
+
+        
+        
+    
+
