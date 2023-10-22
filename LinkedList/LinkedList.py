@@ -325,6 +325,87 @@ reversed_head = reverseLinkedList(a)
 print("Reversed Linked list: ")
 print_nodes(reversed_head)
 
+# Problem 7 (Zipper)
+
+#Given two linked lists, insert nodes of second list into first list at alternate positions of first list. 
+
+
+# For example, if first list is 5->7->17->13->11 and second is 12->10->2->4->6, the first list should become 5->12->7->10->17->2->13->4->11->6 and second list should become empty. 
+# The nodes of second list should only be inserted when there are positions available. 
+# For example, if the first list is 1->2->3 and second list is 4->5->6->7->8, then first list should become 1->4->2->5->3->6 and second list to 7->8.
+
+def zipper_linked_list(head1: Node, head2: Node) -> Node:
+    
+    tail = head1
+    current1 = head1.next
+    current2 = head2
+    counter = 0
+    
+    # Loop until one of the linked lists ends
+    while(current1 is not None and current2 is not None):
+        
+        if(counter % 2 == 0): 
+            # Append node from the second list
+            tail.next = current2
+            current2 = current2.next
+        else:
+            # Append node from the first list
+            tail.next = current1
+            current1 = current1.next
+        
+        # Update the tail reference and counter
+        tail = tail.next
+        counter += 1
+            
+    # Attach remaining nodes, if any
+    if(current1 is not None): tail.next = current1
+    if(current2 is not None): tail.next = current2
+        
+    return head1
+
+            
+            
+        
+a = Node('A')
+b = Node('B')
+c = Node('C')
+d = Node('D')
+e = Node('E')
+
+a.next = b
+b.next = c
+c.next = d
+d.next = e
+
+
+p = Node('1')
+q = Node('2')
+r = Node('3')
+s = Node('4')
+t = Node('5')
+u = Node('6')
+v = Node('7')
+
+p.next = q
+q.next = r
+r.next = s
+s.next = t
+t.next = u
+u.next = v
+    
+print()
+print("Given Linked list1: ")
+print_nodes(a)
+
+print()
+print("Given Linked list2: ")
+print_nodes(p)
+
+print()
+print("Zipping two list: ")
+print_nodes(zipper_linked_list(a, p))
+
+
         
         
     
