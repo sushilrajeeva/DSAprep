@@ -434,6 +434,9 @@ def mid_finder(head: Node):
         
     return slow.value
 
+    # Time: O(n)
+    # Space: O(1)
+
 
 a = Node('A')
 b = Node('B')
@@ -455,4 +458,56 @@ print_nodes(a)
 
 print()
 print("Mid of this Linked List is: ", mid_finder(a))
+
+# Problem 9: 
+# Divide the Linked list in two halves
+
+def divideLinkedList(head: Node):
+    
+    slow = head
+    fast = head
+    
+    previous = head
+    
+    while fast is not None and fast.next is not None:
+        previous = slow
+        slow = slow.next
+        fast = fast.next.next 
+        
+    previous.next = None
+    
+    newHead = slow
+    
+    return head, newHead
+
+    # Time: O(n)
+    # Space: O(1)
+
+
+a = Node('A')
+b = Node('B')
+c = Node('C')
+d = Node('D')
+e = Node('E')
+f = Node('F')
+g = Node('G')
+
+a.next = b
+b.next = c
+c.next = d
+d.next = e
+e.next = f
+f.next = g
+
+print()
+print("************ Split Linked List in two halves ************")
+print("Given List: ")
+print_nodes(a)
+
+print()
+x,y = divideLinkedList(a)
+print("First half of Linked List is: ")
+print_nodes(x)
+print("Second half of Linked List is: ")
+print_nodes(y)
 
