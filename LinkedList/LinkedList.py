@@ -267,46 +267,46 @@ print("Value of node at index ", index, " is: ", get_index_value(a, index))
 
 #Iterative Approach
 
-# def reverseLinkedList(head: Node) -> Node:
+def reverseLinkedList(head: Node) -> Node:
     
-#     previous = None  # Initialize previous pointer to None
-#     current = head   # Start with the head node
+    previous = None  # Initialize previous pointer to None
+    current = head   # Start with the head node
     
-#     while(current is not None):
+    while(current is not None):
         
-#         next = current.next  # Temporarily store the next node
+        next = current.next  # Temporarily store the next node
         
-#         current.next = previous  # Reverse the current node's pointer
+        current.next = previous  # Reverse the current node's pointer
         
-#         previous = current  # Move the previous pointer forward
-#         current = next      # Move the current pointer forward
+        previous = current  # Move the previous pointer forward
+        current = next      # Move the current pointer forward
     
-#     # At the end, previous points to the new head of the reversed list
-#     return previous
+    # At the end, previous points to the new head of the reversed list
+    return previous
 
-#     # Time: O(n)
-#     # Space: O(1)
+    # Time: O(n)
+    # Space: O(1)
 
 
 # Recursion Approach
 
-def reverseLinkedList(current: Node, previous=None) -> Node:
+# def reverseLinkedList(current: Node, previous=None) -> Node:
     
-    # Base case: If we've reached the end of the list, return the last node
-    if current is None:
-        return previous
+#     # Base case: If we've reached the end of the list, return the last node
+#     if current is None:
+#         return previous
     
-    # Save the next node before overwriting current's next pointer
-    next = current.next
+#     # Save the next node before overwriting current's next pointer
+#     next = current.next
     
-    # Reverse the current node's pointer
-    current.next = previous
+#     # Reverse the current node's pointer
+#     current.next = previous
     
-    # Recursive call with the next node and the current node as the new "previous"
-    return reverseLinkedList(next, current)
+#     # Recursive call with the next node and the current node as the new "previous"
+#     return reverseLinkedList(next, current)
 
-    # Time: O(n)
-    # Space: O(n)
+#     # Time: O(n)
+#     # Space: O(n)
 
     
     
@@ -511,3 +511,66 @@ print_nodes(x)
 print("Second half of Linked List is: ")
 print_nodes(y)
 
+
+# Problem 10: 
+# Reordering (https://leetcode.com/problems/reorder-list/submissions/)
+# You are given the head of a singly linked-list. The list can be represented as:
+
+# L0 → L1 → … → Ln - 1 → Ln
+# Reorder the list to be on the following form:
+
+# L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
+# You may not modify the values in the list's nodes. Only nodes themselves may be changed
+
+# Input: head = [1,2,3,4]
+# Output: [1,4,2,3]
+
+# Solution i can use my previously built functions 
+# step 1 -> split the linked list into 2 equal halves
+# reverse second half 
+# apply zipper list function on first and second linked list
+
+def reordering_linked_list(head: Node) -> Node:
+    
+    # Step 1 -> Split the linked list into two equal halves
+    
+    first_list_head, second_list_head = divideLinkedList(head)
+    
+    # step 2 ->  reversing the second linked list
+    second_list_head = reverseLinkedList(second_list_head)
+    
+    # step 3 -> apply zipper list function on first and second list
+    zipperHead = zipper_linked_list(first_list_head, second_list_head)
+    
+    return zipperHead
+
+    # Time: O(n)
+    # Space: O(1)
+    
+
+
+a = Node('1')
+b = Node('2')
+c = Node('3')
+d = Node('4')
+e = Node('5')
+# f = Node('F')
+# g = Node('G')
+
+a.next = b
+b.next = c
+c.next = d
+d.next = e
+# e.next = f
+# f.next = g
+
+print()
+print("************ Reordering Linked List ************")
+print("Given List: ")
+print_nodes(a)
+
+print()
+reordered_head = reordering_linked_list(a)
+print("Reordered Linked List is: ")
+print_nodes(reordered_head)
+    
