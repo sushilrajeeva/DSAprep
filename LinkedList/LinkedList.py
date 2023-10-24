@@ -574,3 +574,65 @@ reordered_head = reordering_linked_list(a)
 print("Reordered Linked List is: ")
 print_nodes(reordered_head)
     
+    
+# Problem 11
+# Remove Linked List Elements (LeetCode: https://leetcode.com/problems/remove-linked-list-elements/description/)
+
+# Given the head of a linked list and an integer val, remove all the nodes of the linked list that has Node.val == val, and return the new head.
+
+# Example
+# Input: head = [1,2,6,3,4,5,6], val = 6
+# Output: [1,2,3,4,5]
+
+def removeElements(head: Node, value: int):
+
+    # Handle the case where the head needs to be removed
+    while head and head.value == value:
+        head = head.next
+
+    # Initialize current and previous pointers
+    current = head
+    previous = None
+
+
+
+    while(current is not None): 
+            
+        if(current.value == value):
+                #logic to remove
+            previous.next = current.next
+        else:
+                # Only update previous if no node was removed
+            previous = current
+            
+        current = current.next
+
+    return head
+
+    
+a = Node('1')
+b = Node('2')
+c = Node('3')
+d = Node('3')
+e = Node('5')
+# f = Node('F')
+# g = Node('G')
+
+a.next = b
+b.next = c
+c.next = d
+d.next = e
+# e.next = f
+# f.next = g
+
+print()
+print("************ Removing Element from Linked List ************")
+print("Given List: ")
+print_nodes(a)
+toRemove = '3'
+print("Element to remove - ", toRemove)
+
+print()
+new_list_head = removeElements(a, toRemove)
+print("New Linked List is: ")
+print_nodes(new_list_head)
