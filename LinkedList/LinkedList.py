@@ -3,9 +3,9 @@ class Node:
     #Constructor takes a value
     #by default when a node is created, it's value is set and the next pointer is set to None;
        
-    def __init__(self, value):
+    def __init__(self, value = 0, next = None):
         self.value = value
-        self.next = None
+        self.next = next
     
     
 #Creating 4 node points        
@@ -636,3 +636,164 @@ print()
 new_list_head = removeElements(a, toRemove)
 print("New Linked List is: ")
 print_nodes(new_list_head)
+
+
+# Problem 12: Palindrome
+
+# Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
+
+# Input: head = [1,2,2,1]
+# Output: true
+
+# Follow up: Could you do it in O(n) time and O(1) space?
+
+def isPalindrome(head: Node) -> bool:
+    
+    #First i will break this problem into multiple parts 
+    # 1. Getting the mid point
+    # 2. Reverse the linked list from mid point
+    # 3. Itterate from the second half (right side) reversed till it reaches null and compare it with the first half (left side)
+    # 4. return true or false depending on if it is same throughout or not
+    
+    # Getting mid point (using two pointer)
+    
+    slow, fast = head, head
+    
+    
+    while(fast is not None and fast.next is not None):
+        
+        slow = slow.next 
+        fast = fast.next.next 
+        
+    
+    mid = slow
+    
+    # Reversing the linked list from mid
+    
+    previous = None
+    current = mid
+    
+    
+    while(current is not None):
+        next = current.next 
+        current.next = previous
+        previous = current
+        current = next 
+        
+    
+    #This will contain the head of the second half i.e last element of original linked list
+    right = previous
+    left = head 
+    
+    #Checking palindrome
+    
+    while(right is not None):
+        if left.value != right.value:
+            return False
+        left = left.next 
+        right = right.next
+        
+    return True
+
+
+a = Node('1')
+b = Node('2')
+c = Node('3')
+d = Node('2')
+e = Node('1')
+
+
+a.next = b
+b.next = c
+c.next = d
+d.next = e
+
+
+print()
+print("************ Checking Palindrome from Linked List ************")
+print("Given List: ")
+print_nodes(a)
+
+print()
+value = "is a" if isPalindrome(a) else "not a"
+print("The given linked list",value, "Palindrome" )
+
+#Problem 13: 
+#Merging two sorted list
+
+# You are given the heads of two sorted linked lists list1 and list2.
+
+# Merge the two lists into one sorted list. The list should be made by splicing together the nodes of the first two lists.
+
+# Return the head of the merged linked list.
+
+# Input: list1 = [1,2,4], list2 = [1,3,4]
+# Output: [1,1,2,3,4,4]
+
+def mergeTwoLists(list1: Node, list2: Node) -> Node:
+    
+    #I will create a starting point of my result node that will contain the merger of two lists
+    dummy = Node()
+    #Tail to keep track of the end of the linked list
+    tail = dummy
+    
+    # now let's itterate over both lists and check which is having lower value that will be added to the dummy linked liat tail
+    
+    while(list1 is not None and list2 is not None):
+        
+        if(list1.value < list2.value):
+            tail.next = list1
+            list1 = list1.next
+        else:
+            tail.next = list2
+            list2 = list2.next
+            
+        tail = tail.next
+        
+    # one of the list will have remaining elements so we have to append it to the end of the dummy list
+    
+    if(list1 is not None):
+        tail.next = list1
+    else:
+        tail.next = list2
+        
+    return dummy.next
+
+    # Time: O(n)
+    # Space: O(1)
+    
+    
+a = Node('1')
+b = Node('2')
+c = Node('3')
+
+
+
+a.next = b
+b.next = c
+
+
+x = Node('1')
+y = Node('1')
+z = Node('4')
+
+
+
+x.next = y
+y.next = z
+
+
+print()
+print("************ Merging two Linked List ************")
+print("Given List A: ")
+print_nodes(a)
+print("Given List B: ")
+print_nodes(x)
+print()
+print("Merged Linked List: ")
+print_nodes(mergeTwoLists(a,x))
+
+
+        
+    
+    
