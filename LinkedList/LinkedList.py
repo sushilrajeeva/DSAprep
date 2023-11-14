@@ -906,9 +906,74 @@ print_nodes(mergeKLists(lists))
 
 
             
-            
-            
-        
-        
+# Problem 15:
+# Add Two Numbers
+# Medium
+
+# You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+
+# You may assume the two numbers do not contain any leading zero, except the number 0 itself.       
+
+# Input: l1 = [2,4,3], l2 = [5,6,4]
+# Output: [7,0,8]
+# Explanation: 342 + 465 = 807.
+
+def addTwoNumbers(node1: Node, node2: Node) -> Node:
     
+    dummy = Node()
+    current = dummy
+    carry = 0
     
+    while node1 is not None or node2 is not None or carry:
+        
+        # Taking care of condition when one of them is empty like very large number plus small -> 100000 + 3 , so it is actually 100000 + 000003
+        v1 = node1.value if node1 else 0
+        v2 = node2.value if node2 else 0
+        
+        value = v1 + v2 + carry
+        
+        # compute carry and value if it over flows
+        carry = value // 10
+        value = value % 10
+        
+        current.next = Node(value)
+        
+        current = current.next
+        node1 = node1.next if node1 else None
+        node2 = node2.next if node2 else None
+        
+    return dummy.next
+
+    # Time: O(max(m,n))
+    # Space: O(max(m,n))
+
+        
+
+
+a = Node(2)
+b = Node(4)
+c = Node(3)
+
+a.next = b
+b.next = c
+
+
+l = Node(5)
+m = Node(6)
+n = Node(4)
+
+l.next = m
+m.next = n
+
+
+
+print()
+print("************ Adding two Linked List numbers ************")
+print("Given List A: ")
+print_nodes(a)
+print("Given List B: ")
+print_nodes(l)
+print()
+
+print("Addition of two linked list numbers is: ")
+print_nodes(addTwoNumbers(a, l))
