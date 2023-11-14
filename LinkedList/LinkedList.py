@@ -586,28 +586,32 @@ print_nodes(reordered_head)
 
 def removeElements(head: Node, value: int):
 
-    # Handle the case where the head needs to be removed
-    while head and head.value == value:
-        head = head.next
-
-    # Initialize current and previous pointers
-    current = head
-    previous = None
-
-
-
-    while(current is not None): 
-            
+    # Creating a dummy node and pointing it to the head of my given linked list
+    dummy: Node = Node(next=head)
+    
+    # Assigning previous to my dummy
+    previous: Node = dummy
+    # Assigning current to my head of linked list
+    current: Node = head
+    
+    while current is not None:
+        
+        # Storing the next node in a next variable
+        next = current.next
+        
+        # delete the node if it has the value we want to delete
         if(current.value == value):
-                #logic to remove
-            previous.next = current.next
+            previous.next = next
         else:
-                # Only update previous if no node was removed
             previous = current
             
-        current = current.next
+        current = next
+    
+    return dummy.next
 
-    return head
+    # Time: O(n)
+    # Space: O(1)
+    
 
     
 a = Node('1')
@@ -657,7 +661,8 @@ def isPalindrome(head: Node) -> bool:
     
     # Getting mid point (using two pointer)
     
-    slow, fast = head, head
+    slow:Node = head
+    fast:Node = head
     
     
     while(fast is not None and fast.next is not None):
@@ -719,7 +724,7 @@ value = "is a" if isPalindrome(a) else "not a"
 print("The given linked list",value, "Palindrome" )
 
 #Problem 13: 
-#Merging two sorted list
+# Merging two sorted list
 
 # You are given the heads of two sorted linked lists list1 and list2.
 
@@ -794,6 +799,116 @@ print("Merged Linked List: ")
 print_nodes(mergeTwoLists(a,x))
 
 
+
+# Problem 14
+# Merge k Sorted Lists
+# Leetcode link -> https://leetcode.com/problems/merge-k-sorted-lists/
+
+# You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
+
+# Merge all the linked-lists into one sorted linked-list and return it.
+
+# Example 1:
+
+# Input: lists = [[1,4,5],[1,3,4],[2,6]]
+# Output: [1,1,2,3,4,4,5,6]
+# Explanation: The linked-lists are:
+# [
+#   1->4->5,
+#   1->3->4,
+#   2->6
+# ]
+# merging them into one sorted list:
+# 1->1->2->3->4->4->5->6
+
+
+def mergeKLists(lists: list[Node]) -> Node:
+    
+    # edge cases
+    
+    # edge case 1: when given list is empty it should return none
+    if not lists or len(lists) == 0:
+        return None
+    
+    # do this logic till my lists array has only one element
+    while len(lists) > 1:
+        
+        # storing the output of two merged sorted list
+        mergedLists = []
+        
+        # Iterrate the loop in step of 2
+        for i in range(0, len(lists), 2):
+            
+            list1 = lists[i]
+            # Edge Case 2: while looping if the array is of odd length then we might encounter array out of bound when trying to get i+1 element
+            list2 = lists[i+1] if (i+1) < len(lists) else None
+            
+            # Now i have to merge these two linked lists to one linked lists
+            mergedLists.append(mergeTwoLists(list1, list2))
+            
+            
+            
+        # now replace this merged linked lists (size of it is half of original list) with the original lists
+        
+        lists = mergedLists
+        
+    # after the while loop executes only one element will be present in the list, and that is the k merged linked lists in sorted order
+    return lists[0]
+
+    # Time: O(n*log(k))
+    # space: O(n)
+    
+    
+    
+#Input: lists = [[1,4,5],[1,3,4],[2,6]]
+    
+lists = []
+
+a = Node(1)
+b = Node(4)
+c = Node(5)
+
+a.next = b
+b.next = c
+
+
+lists.append(a)
+
+l = Node(1)
+m = Node(3)
+n = Node(4)
+
+l.next = m
+m.next = n
+
+lists.append(l)
+
+x = Node(2)
+y = Node(6)
+
+x.next = y
+
+lists.append(x)
+
+
+
+print()
+print("************ Merging K sorted Linked List ************")
+print("Given List 1: ")
+print_nodes(lists[0])
+print("Given List 2: ")
+print_nodes(lists[1])
+print("Given List 3: ")
+print_nodes(lists[2])
+print()
+print("Merged K Linked List: ")
+print_nodes(mergeKLists(lists))
+
+
+            
+            
+            
+        
         
     
     
