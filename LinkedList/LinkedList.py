@@ -910,6 +910,8 @@ print_nodes(mergeKLists(lists))
 # Add Two Numbers
 # Medium
 
+# LeetCode link -> https://leetcode.com/problems/add-two-numbers/description/
+
 # You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
 
 # You may assume the two numbers do not contain any leading zero, except the number 0 itself.       
@@ -977,3 +979,69 @@ print()
 
 print("Addition of two linked list numbers is: ")
 print_nodes(addTwoNumbers(a, l))
+
+
+# Problem 16: 
+
+# 19. Remove Nth Node From End of List
+# Medium
+# LeetCode Link -> https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/
+
+# Given the head of a linked list, remove the nth node from the end of the list and return its head.
+
+# Input: head = [1,2,3,4,5], n = 2
+# Output: [1,2,3,5]
+
+def removeNthFromEnd(head: Node, n: int) -> Node:
+    
+    # creating a dummy node and linking it to the head
+    dummy = Node(next = head)
+    
+    # setting left pointer to the dummy and right pointer to the nth distance from head
+    
+    left = dummy
+    right = head
+    
+    # Logic to set right at nth distance from head initially
+    while n > 0 and right is not None:
+        right = right.next
+        n-=1
+        
+    # Now keep itterating till right is None, when this happens then left will be the node we want to delete's position's left 
+    
+    while right is not None:
+        left = left.next
+        right = right.next
+        
+    # logic to delete the nth node from end
+    left.next = left.next.next
+    
+    # return from head
+    return dummy.next
+
+    # Time: O(n)
+    # Space: O(1)
+
+# Input: head = [1,2,3,4,5], n = 2
+a = Node(1)
+b = Node(2)
+c = Node(3)
+d = Node(4)
+e = Node(5)
+
+
+a.next = b
+b.next = c
+c.next = d
+d.next = e
+
+
+
+print()
+print("************ Remove Nth Node From End of List ************")
+print("Given List A: ")
+print_nodes(a)
+print()
+n = 2
+print("After deleting", n, "position from end, new Linked list:")
+print_nodes(removeNthFromEnd(a, n))
