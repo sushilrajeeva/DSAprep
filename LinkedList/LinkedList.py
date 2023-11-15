@@ -1045,3 +1045,59 @@ print()
 n = 2
 print("After deleting", n, "position from end, new Linked list:")
 print_nodes(removeNthFromEnd(a, n))
+
+# Problem 17
+
+# 24. Swap Nodes in Pairs
+# Medium
+# Given a linked list, swap every two adjacent nodes and return its head. 
+# You must solve the problem without modifying the values in the list's nodes (i.e., only nodes themselves may be changed.)
+
+# Input: head = [1,2,3,4]
+# Output: [2,1,4,3]
+
+def swapPairs(head: Node) -> Node:
+    
+    if not head or not head.next:
+        return head
+    
+    dummy = Node(next=head)
+    previous = dummy
+    
+    while head and head.next:
+        
+        first: Node = head
+        second: Node = head.next
+        
+        #swapping
+        
+        previous.next = second
+        first.next = second.next
+        second.next = first
+        
+        #updating the pointers
+        previous = first
+        head = first.next
+        
+    return dummy.next
+
+    # Time: O(n)
+    # Space: O(1)
+    
+    
+a = Node(1)
+b = Node(2)
+c = Node(3)
+d = Node(4)
+    
+a.next = b
+b.next = c
+c.next = d
+
+print()
+print("************ Swap Nodes in Pairs ************")
+print("Given List A: ")
+print_nodes(a)
+print()
+print("Swapped Linked List:")
+print_nodes(swapPairs(a))
