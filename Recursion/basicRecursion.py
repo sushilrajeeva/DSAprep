@@ -74,3 +74,25 @@ def invertedRightTriangle(row: int, column: int = 0):
 height = 5       
 print("Inverted Right Triangle with height", height, ":")
 invertedRightTriangle(height)
+
+
+# Printing Triable with given number of rows (Normal Right Angled TRIANGLE)
+# *
+# **
+# ***
+# ****
+
+def rightTriangle(rows: int, current_row: int = 1):
+    # Base condition to end recursion
+    if rows < current_row:
+        return
+
+    # Print stars for the current row
+    print('*' * current_row)
+
+    # Recursive call for the next row
+    rightTriangle(rows, current_row + 1)
+
+height = 5
+print("Right Triangle with height", height, ":")
+rightTriangle(height)
