@@ -1,0 +1,53 @@
+def reverseString(string):
+    # What is the base case?
+    if(string == ""):
+        return ""
+    
+    # What is the smallest amount of work I can do in each iteration!
+    return reverseString(string[1::]) + string[0]
+    
+    
+string = "Hello World!"
+
+print("Reverse of", string, "is", reverseString(string))
+
+def isPalindrome(string)-> bool:
+    
+    if(len(string) == 0 or len(string) == 1):
+        return True
+    
+    if string[0] == string[-1]:
+        return isPalindrome(string[1:-1])
+    
+    return False
+
+string = "racecar"
+print("Is", string, "a palindrome? :", isPalindrome(string))
+    
+   
+# Convert a number (Decimal to Binary)
+
+def findBinary(decimal: int, result = ""):
+    
+    if(decimal == 0):
+        return result
+    
+    result = str(decimal % 2) + result
+    
+    return findBinary(decimal // 2, result)
+
+decimal = 100
+
+print(decimal, "in binary format is :", findBinary(decimal))
+
+# Sum of natural numbers
+
+def sumOfNaturalNumbers(number: int) -> int:
+    
+    if number == 0:
+        return number
+    
+    return number + sumOfNaturalNumbers(number-1)
+
+num = 10
+print("Sum of", num, "natural numbers is :", sumOfNaturalNumbers(num))
