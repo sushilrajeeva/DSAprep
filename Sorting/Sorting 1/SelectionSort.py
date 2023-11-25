@@ -28,5 +28,28 @@ print("After applying Selection Sort: ", selectionSort(array))
 # Time: O(n*n)
 # Space: O(1)
 
-
+def selectionSortRecursion(array: list, start: int = 0):
+    
+    n = len(array)
+    
+    # Exit Condition (itterate till len of array -1 times)
+    if start >= n-1:
+        return
+    
+    min_index = start
+    
+    # itterate through the array from second position to end
+    for i in range(start+1, n):
+        # Swap if required
+        if(array[i]< array[min_index]):
+            min_index = i
+    array[start], array[min_index] = array[min_index], array[start]
+    
+    # Recursive call
+    selectionSortRecursion(array, start+1)
+    
+array = [13, 46, 24, 52, 20, 9]
+print("Given Unsorted Array:", array)
+selectionSortRecursion(array)
+print("After applying Selection Sort using Recursion:", array)
     
