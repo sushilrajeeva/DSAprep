@@ -51,3 +51,26 @@ def sumOfNaturalNumbers(number: int) -> int:
 
 num = 10
 print("Sum of", num, "natural numbers is :", sumOfNaturalNumbers(num))
+
+# Printing Triable with given number of rows (INVERTED RIGHT ANGLED TRIANGLE)
+# ****
+# ***
+# **
+# *
+
+def invertedRightTriangle(row: int, column: int = 0):
+    
+    # Exit Condition
+    if(row == 0):
+        return
+    
+    if column < row:
+        print("*", end="")
+        invertedRightTriangle(row, column+1)
+    else:
+        print()
+        invertedRightTriangle(row-1, 0)
+ 
+height = 5       
+print("Inverted Right Triangle with height", height, ":")
+invertedRightTriangle(height)
