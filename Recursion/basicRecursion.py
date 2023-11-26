@@ -1,3 +1,6 @@
+#Recursion:
+# When a function calls itself until a specific condition is met is called Recursion
+
 def reverseString(string):
     # What is the base case?
     if(string == ""):
@@ -205,3 +208,20 @@ print_nodes(x)
 print()
 print("Sorted Linked List: ")
 print_nodes(mergeSortedList(a,x))
+
+
+# Print N to 1 using backtracking
+
+def backTrack(n1: int, n2: int):
+    
+    if(n1 > n2):
+        return
+    
+    backTrack(n1+1, n2)
+    
+    print(n1)
+    
+    
+print("Printing N to 1 using Backtracking")
+backTrack(1, 5)
+    
