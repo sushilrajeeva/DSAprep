@@ -40,4 +40,30 @@ print("Sub-sequences of the given Array :")
 subSeq(inputArr)
         
         
+# Printing all the subsequences of an array whose sum is a perticular number
+def sumSubSeq(inputArr: list, target: int, sequence: list = [], index: int = 0):
+    
+    # Base Condition
+    if index == len(inputArr): # I have gone to the last index, i,e i have traversesd to end of a sequence
+        # Print but only if sum of the elements in sequence is the required sum
+        if(sum(sequence) == target):
+            print(sequence, end="\n")
+        return
+            
+    # Algo for Take
+    sequence.append(inputArr[index])
+    sumSubSeq(inputArr, target, sequence, index+1)
+    
+    # Algo for Leave
+    sequence.pop()
+    sumSubSeq(inputArr, target, sequence, index+1)
+    
+
+inputArr = [1, 2, 1]
+target = 2
+
+print("Given Input Array :", inputArr)
+print("Sub-sequences of the given Array where sum is", target, "is :")
+sumSubSeq(inputArr, target)
+        
     
