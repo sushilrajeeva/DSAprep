@@ -40,3 +40,38 @@ def fac(number: int) -> int:
 num = 5
 
 print("Factorial of", num, "is :", fac(num))
+
+# Reverse an Array using recursion
+
+# Input -> [1, 2, 3, 4]
+# Output -> [4, 3, 2, 1]
+
+
+def reverseArray(input: list, itr: int = 0) -> list:
+    
+    # Base Condition
+    if(len(input)//2 == itr):
+        return input
+    
+    # Minimum work
+    complement = len(input) - itr - 1
+    input[itr], input[complement] = input[complement], input[itr] # Swap
+    return reverseArray(input, itr+1)
+
+array = [1, 2, 3]
+print("Given Array is :", array)
+print("Reverse of Array is :", reverseArray(array))
+
+# Palindrome using recursion
+
+def isPalindrome(string: str, itr: int = 0) -> bool:
+    
+    if(len(string)//2 == itr):
+        return True
+    
+    if(string[itr] != string[len(string) - itr - 1]): return False
+    
+    return isPalindrome(string, itr=itr+1)
+
+string = "Hello"
+print("Is", string, "a palindrome :", isPalindrome(string))
