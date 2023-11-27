@@ -65,5 +65,76 @@ target = 2
 print("Given Input Array :", inputArr)
 print("Sub-sequences of the given Array where sum is", target, "is :")
 sumSubSeq(inputArr, target)
-        
+
+# Modified - > print any one subsequnce whose sum is k
+
+# (Technique to print only one answer)
+
+def firstSumSubSeq(inputArr: list, target: int, sequence: list = [], index: int = 0):
     
+    # Base Condition
+    if index == len(inputArr): # I have gone to the last index, i,e i have traversesd to end of a sequence
+        # Print but only if sum of the elements in sequence is the required sum
+        if(sum(sequence) == target):
+            print(sequence, end="\n")
+            return True
+        return False
+            
+    # Algo for Take
+    sequence.append(inputArr[index])
+    if(firstSumSubSeq(inputArr, target, sequence, index+1)): return True
+    
+    # Algo for Leave
+    sequence.pop()
+    if(firstSumSubSeq(inputArr, target, sequence, index+1)): return True
+    
+    return False
+    
+
+inputArr = [1, 2, 1]
+target = 2
+
+print("Given Input Array :", inputArr)
+print("First Sub-sequences of the given Array where sum is", target, "is :")
+firstSumSubSeq(inputArr, target)
+
+# Modified -> Give the count of how many sub-sequences satisfies the sum = k condition
+
+# def countSumSubSeq(inputArr: list, target: int, sequence: list = [], index: int = 0) -> int:
+    
+#     if index == len(inputArr):
+#         if(sum(sequence) == target):
+#             return 1
+#         return 0
+    
+#     # Logic for Take
+#     sequence.append(inputArr[index])
+#     left = countSumSubSeq(inputArr, target, sequence, index+1)
+    
+#     # Logic for Leave 
+#     sequence.pop()
+#     right = countSumSubSeq(inputArr, target, sequence, index+1)
+    
+#     return left + right
+
+# More optimized version
+def countSumSubSeq(inputArr: list, target: int, index: int = 0, current_sum: int = 0) -> int:
+    if index == len(inputArr):
+        return 1 if current_sum == target else 0
+
+    # Include the current element in the sum
+    count_with = countSumSubSeq(inputArr, target, index + 1, current_sum + inputArr[index])
+    
+    # Exclude the current element from the sum
+    count_without = countSumSubSeq(inputArr, target, index + 1, current_sum)
+    
+    return count_with + count_without
+
+
+    
+inputArr = [2, 1, 2, 1]
+target = 2
+
+print("Given Input Array :", inputArr)
+print("Count of Sub-sequences of the given Array where sum is", target, "is :")
+print(countSumSubSeq(inputArr, target))
