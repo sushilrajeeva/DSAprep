@@ -111,3 +111,28 @@ input1 = ["we", "say", ":", "yes"]
 encode_str1 = encode(input1)
 print("Input -> ", input1)
 print("Output -> ", decode(encode_str1))
+
+
+def longestConsecutive(nums: list[int]) -> int:
+        
+    res = [-1 for _ in range(max(nums)+1)]
+    for i in range(len(nums)):
+        if(res[nums[i]] == -1):
+            print("hiii")
+            res[nums[i]] = 1
+        else:
+            res[nums[i]] +=1
+
+    maxRange = 0
+    curRange = 0
+    for i in range(len(res)):
+        if(res[i] != -1):
+            curRange+=1
+        else: curRange = 0
+        
+        if curRange>maxRange:
+            maxRange = curRange
+            
+    return maxRange
+    
+print(longestConsecutive([100,4,200,1,3,2]))
