@@ -57,8 +57,93 @@ def moveZeros(n: int,  a: list) -> list:
             
     return a
 
-
-
 input = [0,0,0,1]
 
 print(moveZeros(4, input))
+
+
+# Rotate array by K elements
+# Rotate array by K elements
+
+# Problem Statement: Given an array of integers, rotating array of elements by k elements either left or right.
+
+# Examples:
+
+# Example 1:
+# Input: N = 7, array[] = {1,2,3,4,5,6,7} , k=2 , right
+# Output: 6 7 1 2 3 4 5
+# Explanation: array is rotated to right by 2 position .
+
+# Example 2:
+# Input: N = 6, array[] = {3,7,8,9,10,11} , k=3 , left 
+# Output: 9 10 11 3 7 8
+# Explanation: Array is rotated to right by 3 position.
+
+def rotate_by_k(arr: list, k: int, position: str) -> list:
+    
+    k = k%len(arr)
+    if k == 0:
+        return arr
+    
+    if position == "left":
+        temp = [arr[i] for i in range(k)]
+        
+        for i in range(k, len(arr)):
+            arr[i-k] = arr[i]
+            
+        for i in range(len(temp)):
+            # print("arr", arr[len(arr) - k], "temp", temp[i])
+            arr[len(arr) - k+i] = temp[i]
+       
+    if position == "right":
+        n = len(arr)
+        # Store the last k elements in a temporary array
+        temp = arr[n-k:]
+
+        # Shift the rest of the array elements right by k positions
+        for i in range(n-k-1, -1, -1):
+            arr[i+k] = arr[i]
+
+        # Place the elements from the temporary array at the beginning
+        for i in range(k):
+            arr[i] = temp[i]
+            
+            
+    
+    return arr
+
+input = [1,2,3,4,5,6,7]
+k = 3
+position = "right"
+
+print(rotate_by_k(input, k, position))
+
+
+from typing import *
+
+def missingNumber(a : list, N : int) -> int:
+    # Write your code here.
+    total = int(N * ((N+1)/2))
+    print("total",total)
+    for i in range(len(a)):
+        total = total - a[i]
+
+    return total
+
+print(missingNumber([1,2,3], 4))
+
+def searchMatrix(mat: [[int]], target: int) -> bool:
+    # Write your code here.
+    
+    for row in mat:
+        if target < row[0]:
+            return False
+        
+        if target <= row[-1]:
+            res = False
+            for ele in row:
+                if ele == target:
+                    res = True 
+            return res
+        
+print(searchMatrix( [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]], 8))
