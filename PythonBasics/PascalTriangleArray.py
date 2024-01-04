@@ -41,3 +41,14 @@ def findPascalElement(rows: int, columns: int) -> int:
 print(findPascalElement(5, 3))
 
 
+# Variant 2
+# Given the row number n. Print the n-th row of Pascal’s triangle.
+
+# Our first observation regarding Pascal’s triangle should be that the n-th row of the triangle has exactly n elements. With this observation, we will proceed to solve this problem.
+
+def getPascalRow(row: int) -> list:
+    
+    pascal_row = [findPascalElement(row,ele) for ele in range(1, row+1)]
+    return pascal_row
+
+print(getPascalRow(4))
