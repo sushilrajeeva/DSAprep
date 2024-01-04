@@ -147,3 +147,45 @@ def searchMatrix(mat: [[int]], target: int) -> bool:
             return res
         
 print(searchMatrix( [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]], 8))
+
+
+def sort012(arr, n) :
+
+	# write your code here
+    # don't return anything 
+    count_zeros = 0
+    count_ones = 0
+    count_twos = 0
+
+    for i in range(n):
+
+        if arr[i] == 0:
+            print(arr[i] , "= 0")
+            count_zeros += 1
+        elif arr[i] == 1:
+            print(arr[i] , "= 1")
+            count_ones += 1
+        else:
+            print(arr[i] , "= 2")
+            count_twos += 1
+            
+    print(count_zeros, count_ones, count_twos)
+
+    for i in range(count_zeros):
+        
+        arr[i] = 0
+    print("0s", arr)
+
+    for i in range(count_zeros, count_zeros + count_ones):
+        
+        arr[i] = 1
+    print("1s", arr)
+
+    for i in range(count_zeros + count_ones, count_zeros + count_ones + count_twos):
+        
+        arr[i] = 2
+    print("02", arr)
+
+    return arr
+
+print(sort012([0, 1, 2, 2, 1, 0], 6))
