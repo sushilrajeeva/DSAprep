@@ -68,3 +68,29 @@ def getPascalRow(row: int) -> list:
     
 
 print(getPascalRow(4))
+
+# Variation 3: 
+# Given the number of rows n. Print the first n rows of Pascal’s triangle.
+
+# Algorithm / Intuition
+# Now, in the optimal approach of variation 2, we have learned how to generate a row in O(n) time complexity. So, in order to optimize the overall time complexity, we will be using that approach for every row. Thus the total time complexity will reduce.
+
+# First, we will run a loop(say row) from 1 to n.
+# Inside the loop, we will call a generateRow() function and add the returned list to our final answer. Inside the function we will do the following:
+# First, we will store the 1st element i.e. 1 manually.
+# After that, we will use a loop(say col) that runs from 1 to n-1. It will store the rest of the elements.
+# Inside the loop, we will use the specified formula to print the element. We will multiply the previous answer by (row-col) and then divide it by col itself.
+# Thus, the entire row will be stored and returned.
+# Finally, we will return the answer list.
+
+def generate_pascal_triangle(height: int):
+    
+    pascal_triangle = []
+    
+    for i in range(1, height + 1):
+        
+        pascal_triangle.append(getPascalRow(i))
+        
+    return pascal_triangle
+
+print(generate_pascal_triangle(4))
