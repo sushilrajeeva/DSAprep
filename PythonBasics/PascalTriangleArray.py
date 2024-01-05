@@ -48,7 +48,23 @@ print(findPascalElement(5, 3))
 
 def getPascalRow(row: int) -> list:
     
-    pascal_row = [findPascalElement(row,ele) for ele in range(1, row+1)]
-    return pascal_row
+    # Brute Force method
+    
+    # pascal_row = [findPascalElement(row,ele) for ele in range(1, row+1)]
+    # return pascal_row
+    
+    pascal_row_optimized = [1] * row
+    
+    for i in range(1, row):
+        
+        numerator = pascal_row_optimized[i-1] * (row - i)
+        
+        pascal_row_optimized[i] = numerator // i
+        
+    return pascal_row_optimized
+    
+    
+    
+    
 
 print(getPascalRow(4))
