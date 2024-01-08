@@ -225,5 +225,37 @@ arr = [4, 23, 33, 37, 40]
 
 print(search_insert(arr, target)) 
 
+
+
+# Floor element given a target in a array
+# Floor is the largest number in array <= target
+
+def floor(arr: List[int], target: int) -> int:
     
+    answer = -1
+    n = len(arr)
     
+    # Initializing the 
+    low, high = 0, n - 1
+    
+    while low <= high:
+        
+        mid = int(low + (high - low) // 2)
+        
+        if target >= arr[mid]:
+            answer = arr[mid]
+            low = mid + 1
+            
+        else:
+            high = mid - 1
+            
+    return answer
+
+# Ceil
+# Ceil is the smallest element of the given array that is >= x
+# This is nothing but to find lower bound
+
+def ceil(arr: List[int], target: int) -> int:
+    
+    return lower_bound(arr, target)
+
