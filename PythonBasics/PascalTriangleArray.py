@@ -93,4 +93,4 @@ def generate_pascal_triangle(height: int):
         
     return pascal_triangle
 
-print(generate_pascal_triangle(4))
+print(generate_pascal_triangle(5))
