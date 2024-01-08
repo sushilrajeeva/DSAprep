@@ -134,6 +134,7 @@ n = 76
 arr = [366, 482, 727, 813, 1133, 1219, 1257, 1640, 2084, 2110, 2363, 2559, 2706, 2763, 3471, 4213, 5300, 5365, 5433, 5517, 6227, 6506, 8384, 8438, 8687, 8847, 8873, 9963, 10696, 11582, 12221, 12344, 12791, 14072, 14079, 14239, 14387, 14949, 15244, 16945, 17516, 19637, 20011, 20504, 20687, 20959, 21252, 21570, 21620, 21651, 22922, 23369, 24141, 24852, 25012, 25192, 25496, 25694, 25843, 27359, 27368, 27523, 28123, 28339, 28568, 29072, 29560, 30259, 30321, 30388, 30918, 31410, 31748, 32370, 32512, 32647]
 x = 17111
 
+
 print(lower_bound(arr, x))
 
 # Upper Bound
@@ -217,7 +218,9 @@ print(upper_bound(arr, x))
 
 def search_insert(nums: List[int], target: int) -> int:
     
-    return lower_bound(nums, target)
+    result =  lower_bound(nums, target)
+    
+    return result if result != len(nums) else -1
 
 
 target = 28
@@ -230,7 +233,7 @@ print(search_insert(arr, target))
 # Floor element given a target in a array
 # Floor is the largest number in array <= target
 
-def floor(arr: List[int], target: int) -> int:
+def get_floor(arr: List[int], target: int) -> int:
     
     answer = -1
     n = len(arr)
@@ -255,7 +258,22 @@ def floor(arr: List[int], target: int) -> int:
 # Ceil is the smallest element of the given array that is >= x
 # This is nothing but to find lower bound
 
-def ceil(arr: List[int], target: int) -> int:
+def get_ceil(arr: List[int], target: int) -> int:
     
-    return lower_bound(arr, target)
+    result = lower_bound(arr, target)
+    
+    return arr[result] if result != len(arr) else -1
 
+def get_floor_ceil(arr: List[int], target: int) -> int:
+    
+    floor_value = get_floor(arr, target)
+    ceil_value = get_ceil(arr, target)
+    
+    return (floor_value, ceil_value)
+
+
+target = 13
+
+arr = [5, 8, 19, 24, 24, 28, 28 ]
+
+print(get_floor_ceil(arr, target))
