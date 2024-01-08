@@ -31,12 +31,48 @@ def binary_search(arr: List, target: int) -> int:
             
         
     return -1
+
+# Doing the same but with recursion
+
+def binary_search_using_recursion(arr: List, target: int) -> int:
+    
+    
+    n = len(arr)
+    low, high = 0, n - 1
+    
+    # defining a function to perform recursion
+    def bs_recursion(arr: List, target: int, low: int, high: int) -> int:
+        
+        # Exit Condition
+        if low > high:
+            return -1
+        
+        mid = (low + high) // 2
+        
+        if arr[mid] == target:
+            return mid
+      
+        elif target < arr[mid]:
+            high = mid - 1
+            
+        else:
+            low = mid + 1
+            
+        
+        return bs_recursion(arr, target, low, high)
+        
+        
+    
+    return bs_recursion(arr, target, low, high)
+        
+        
         
         
 arr = [1, 4, 6, 24, 53, 66, 89]
-target = 53
+target = 24
 
-print(binary_search(arr, target))
+# print(binary_search(arr, target))
+print(binary_search_using_recursion(arr, target))
     
     
     
