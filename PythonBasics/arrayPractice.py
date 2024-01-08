@@ -189,3 +189,34 @@ def sort012(arr, n) :
     return arr
 
 print(sort012([0, 1, 2, 2, 1, 0], 6))
+
+
+def subarrayWithMaxProduct(arr : List[int]) -> int:
+    # Write your code here.
+    
+    
+
+    toRemove = float("-inf")
+    neg_count = 0
+    max_product = None
+
+    for index, value in enumerate(arr):
+
+        if value < 0:
+            neg_count += 1
+            toRemove = max(toRemove, value)
+            if max_product == None:
+                max_product = value
+            else:
+                max_product *= value
+
+        elif value > 0:
+            max_product = value if max_product == None else max_product * value
+
+    if neg_count % 2 != 0:
+        max_product = max_product // toRemove
+
+    return max_product 
+
+
+print(subarrayWithMaxProduct([-1, 3, 0, -4, 3]))
