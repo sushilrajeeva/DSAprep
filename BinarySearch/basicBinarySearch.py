@@ -3,6 +3,8 @@
 # No duplicates
 
 # This is kind of a extension of two pointer as it keeps 3 pointers to keep track of low, mid and high
+
+# Binary Search is not just limited to arrays, we can use the same concept/algorithm to solve problems in data structure like dictionary, answers ... etc
 from typing import *
 
 def binary_search(arr: List, target: int) -> int:
@@ -15,7 +17,9 @@ def binary_search(arr: List, target: int) -> int:
     # important condition , we should run the loop until low is lower than or equal to high, and not just lower than
     while low <= high:
         
-        mid = (low + high)//2
+        # mid = (low + high) // 2
+        # To avoid overflow
+        mid = int(low + (high - low) // 2)
         
         # Condition 1 - if target == arr[mid]
         if target == arr[mid]:
@@ -47,7 +51,9 @@ def binary_search_using_recursion(arr: List, target: int) -> int:
         if low > high:
             return -1
         
-        mid = (low + high) // 2
+        # mid = (low + high) // 2
+        # To avoid overflow
+        mid = int(low + (high - low) // 2)
         
         if arr[mid] == target:
             return mid
@@ -69,7 +75,7 @@ def binary_search_using_recursion(arr: List, target: int) -> int:
         
         
 arr = [1, 4, 6, 24, 53, 66, 89]
-target = 24
+target = 53
 
 # print(binary_search(arr, target))
 print(binary_search_using_recursion(arr, target))
