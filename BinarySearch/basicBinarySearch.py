@@ -192,5 +192,38 @@ arr = [1, 2, 13, 16, 19, 23, 25, 29, 36, 37, 42, 44]
 print(upper_bound(arr, x)) 
 
 
+# Search Insert Postion
+# This is same as finding the lower bound to insert the element
+
+# Problem Descripion
+# Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+
+# You must write an algorithm with O(log n) runtime complexity.
+
+ 
+
+# Example 1:
+
+# Input: nums = [1,3,5,6], target = 5
+# Output: 2
+# Example 2:
+
+# Input: nums = [1,3,5,6], target = 2
+# Output: 1
+# Example 3:
+
+# Input: nums = [1,3,5,6], target = 7
+# Output: 4
+
+def search_insert(nums: List[int], target: int) -> int:
+    
+    return lower_bound(nums, target)
+
+
+target = 28
+arr = [4, 23, 33, 37, 40]
+
+print(search_insert(arr, target)) 
+
     
     
