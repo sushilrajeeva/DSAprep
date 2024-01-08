@@ -136,6 +136,60 @@ x = 17111
 
 print(lower_bound(arr, x))
 
+# Upper Bound
+# Problem statement
+# You are given a sorted array ‘arr’ containing ‘n’ integers and an integer ‘x’.
+
+
+
+# Implement the ‘upperBound’ function to find the index of the upper bound of 'x' in the array.
+
+
+
+# Note:
+# The upper bound in a sorted array is the index of the first value that is greater than a given value. 
+# If the greater value does not exist then the answer is 'n', Where 'n' is the size of the array.
+# We are using 0-based indexing.
+# Try to write a solution that runs in log(n) time complexity.
+
+
+# Example:
+
+# Input : ‘arr’ = {2,4,6,7} and ‘x’ = 5,
+
+# Output: 2
+
+# Explanation: The upper bound of 5 is 6 in the given array, which is at index 2 (0-indexed).
+
+def upper_bound(arr: [int], x: int) -> int:
+    n = len(arr)
+    
+    # Initializing my pointers
+    low, high = 0, n - 1
+    
+    # Initializing answer to size of the array
+    answer = n
+    
+    while low <= high:
+        
+        mid = int(low + (high - low) // 2)
+        
+        if x < arr[mid]:
+            high = mid - 1
+            answer = mid
+            
+            
+        else:
+            low = mid + 1
+    
+            
+    return answer
+
+
+x = 42
+arr = [1, 2, 13, 16, 19, 23, 25, 29, 36, 37, 42, 44]
+
+print(upper_bound(arr, x)) 
 
 
     
