@@ -277,3 +277,64 @@ target = 13
 arr = [5, 8, 19, 24, 24, 28, 28 ]
 
 print(get_floor_ceil(arr, target))
+
+
+# First and Last Occurance
+
+# This is simple, all we have to do is first find the lower bound and upper bound of a given number in our sorted array
+
+# Lower bound gives the first occurance (mostly, if element is not present then it will give you the element that is just less than the target we are trying to find)
+
+# Upper bound gives us the number that is just greater than the target, so technically if we do upper bound it will give us the index of the element
+# that is pointing to the element just greater than our target, so we can just do index - 1 to make it point to our target ( note if element is not present then it might not give us the second occurance)
+# hence we should do a additioanl check on this as well like how we did for lower bound
+
+
+# Problem statement
+# Given an array of integers nums sorted in non-decreasing order, find the starting and ending position of a given target value.
+
+# If target is not found in the array, return [-1, -1].
+
+# You must write an algorithm with O(log n) runtime complexity.
+
+# Example 1:
+
+# Input: nums = [5,7,7,8,8,10], target = 8
+# Output: [3,4]
+# Example 2:
+
+# Input: nums = [5,7,7,8,8,10], target = 6
+# Output: [-1,-1]
+# Example 3:
+
+# Input: nums = [], target = 0
+# Output: [-1,-1]
+
+def find_first_and_last_position(nums: List[int], target: int) -> List[int]:
+    
+
+    n = len(nums)
+
+    # Initializing lb, ub
+    first_occurance, last_occurance = -1, -1
+
+    # Getting the lower bound - this will give me the index of first occurance, if present else n
+    first_occurance = lower_bound(nums, target)
+
+    # If lower bound is n that means the element is not present then obviously upper bound will also be n
+    # One more edge case, if the index returned is not n but that index is also not pointing to target then element is not found
+    if first_occurance == n or nums[first_occurance] != target:
+        return [-1, -1]
+    
+    ub = upper_bound(nums, target)
+    last_occurance = ub - 1
+
+    
+
+    return [first_occurance, last_occurance]
+
+
+target = 4
+arr = [1, 1, 1, 1, 2, 3, 3, 3, 3, 4]
+
+print(find_first_and_last_position(arr, target)) 
