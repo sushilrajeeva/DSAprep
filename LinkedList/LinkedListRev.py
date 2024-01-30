@@ -177,3 +177,32 @@ k = 2
 head = arr_to_LL(arr)
 print("Linked List before Deletion of", k,"th ele:", print_linkedList(head))
 print("Linked List after Deletion of", k,"th ele:", print_linkedList(del_kth_ele(head, k)))
+
+# 8. Delete the node of a linked list given a value
+
+def del_node(head: Node, val: int) -> Node:
+    
+    if head is None: return head
+    
+    if head.value == val:
+        head = head.next
+        return head
+    
+    previous, current = None, head
+    
+    while current is not None:
+        
+        if current.value == val:
+            previous.next = current.next
+            break
+        
+        previous = current
+        current = current.next
+        
+    return head
+        
+arr = [1, 4, 5, 7, 2]
+del_val = 4
+head = arr_to_LL(arr)
+print("Linked List before Deletion of", del_val,":", print_linkedList(head))
+print("Linked List after Deletion of", del_val,":", print_linkedList(del_node(head, del_val)))
