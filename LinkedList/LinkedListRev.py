@@ -1,3 +1,5 @@
+from typing import *
+
 class Node:
     
     def __init__(self, value = 0, next = None):
@@ -20,6 +22,7 @@ def arr_to_LL(arr: list) -> Node:
         
     return head
 
+# 2. Print all elements of linkedlist -> traversal
 def print_linkedList(head: Node):
     
     current = head
@@ -38,4 +41,21 @@ def print_linkedList(head: Node):
 arr = [1, 2, 3, 4]
 head = arr_to_LL(arr)
 print(print_linkedList(head))
+
+# 3. Length of a linked list
+
+def len_linked_list(head: Node):
     
+    if head is None:
+        return 0
+    
+    length = 0
+    current = head
+    
+    while current is not None:
+        length += 1
+        current = current.next
+        
+    return length
+
+print("Length of the above linked list is: ",len_linked_list(head))
