@@ -129,3 +129,34 @@ arr = [1, 4, 5, 7, 2]
 head = arr_to_LL(arr)
 print("Linked List before Deletion of tail", print_linkedList(head))
 print("Linked List after Deletion of tail",print_linkedList(del_tail(head)))
+
+# 7. Deleting a k'th element/node of the linked list
+
+def del_kth_ele(head: Node, k: int):
+    
+    # If the list is empty or k is invalid (as k can't be less than 0)
+    if not head or k < 0: return head
+    
+    # If the head needs to be deleted
+    if k == 0:
+        return head.next
+    
+    current = head
+    
+    for _ in range(1, k):  # Move to the node just before the k'th node
+        if current.next is None:  # If we reach the end before k, return the head
+            return head
+        # This logic will point my current to just one node before the deletion node
+        current = current.next
+            
+    if current.next:
+        current.next = current.next.next
+        
+    return head
+            
+            
+arr = [1, 4, 5, 7, 2]
+k = 2
+head = arr_to_LL(arr)
+print("Linked List before Deletion of", 5,"th ele:", print_linkedList(head))
+print("Linked List after Deletion of", 5,"th ele:", print_linkedList(del_kth_ele(head, k)))
