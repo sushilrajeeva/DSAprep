@@ -269,5 +269,57 @@ print("Doubly Linked List before inserting", element, "before the tail:", print_
 print("Doubly Linked List after inserting", element, "before the tail:", print_doubly_linked_list(insert_before_tail(head, element)))  
 
 
+# 9. Insert an element at the kth position of the doubly linked list
+
+def insert_at_k(head: DoublyLinkedListNode, element: int, position: int) -> DoublyLinkedListNode:
+    
+    newNode = DoublyLinkedListNode(element)
+    if position == 0:
+        newNode.next = head
+        if head:
+            head.previous = newNode
+            
+        return newNode
+    
+    if not head or position < 0:
+        return head
+    
+    count = 0
+    
+    current = head
+    
+    while current.next is not None:
+        
+        if count == position:
+            break
+        
+        current = current.next
+        count += 1
+        
+    if position > count:
+        if position - count == 1:
+            current.next = newNode
+            newNode.previous = current
+        return head
+    
+    
+    previous = current.previous
+    previous.next = newNode
+    newNode.next = current
+    current.previous = newNode
+    
+    
+    return head
+
+
+        
+arr = [1, 2, 3, 4, 5, 6]
+head = arr_to_doubly_linked_list(arr)
+element = 10
+position = 6
+print("Doubly Linked List before inserting", element, "at position", position,":", print_doubly_linked_list(head))
+print("Doubly Linked List after inserting", element, "at position", position,":", print_doubly_linked_list(insert_at_k(head, element, position)))  
+
+
 
     
