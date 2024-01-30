@@ -219,3 +219,28 @@ ele = 4
 head = arr_to_LL(arr)
 print("Linked List before Insertion of", ele," in head:", print_linkedList(head))
 print("Linked List after Insertion of", ele," in head:", print_linkedList(insert_head(head, ele)))
+
+
+# 10. Insert an element at the tail of the linked list
+
+def insert_tail(head: Node, element: int) -> Node:
+    
+    new_node = Node(element)
+    
+    if head is None: return new_node
+    
+    current= head
+    
+    while current.next is not None:
+        # This will make my current point to the last Node of the linked list
+        current = current.next
+      
+    current.next = new_node
+          
+    return head
+
+arr = [1, 4, 5, 7, 2]
+ele = 4
+head = arr_to_LL(arr)
+print("Linked List before Insertion of", ele,"in tail:", print_linkedList(head))
+print("Linked List after Insertion of", ele,"in tail:", print_linkedList(insert_tail(head, ele)))
