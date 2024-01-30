@@ -186,6 +186,22 @@ del_node(node)
 print("Doubly Linked List after deleting the node", node.value, ":", print_doubly_linked_list(head))
 
 
-        
+# 7. Insert an element at the head / start of the doubly linked list
+
+def insert_head(head: DoublyLinkedListNode, element: int) -> DoublyLinkedListNode:
     
+    newHead = DoublyLinkedListNode(element, None, head)
+    
+    if head is not None:
+        head.previous = newHead
+    
+    return newHead
+
+
+        
+arr = [1, 2, 3, 4, 5, 6]
+head = arr_to_doubly_linked_list(arr)
+element = 10
+print("Doubly Linked List before inserting", element, "at the head:", print_doubly_linked_list(head))
+print("Doubly Linked List after inserting", element, "at the head:", print_doubly_linked_list(insert_head(head, element)))  
     
