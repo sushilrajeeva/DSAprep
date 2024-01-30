@@ -155,11 +155,11 @@ print("Doubly Linked List after deleting element at position", k, ":", print_dou
 
 def del_node(node: DoublyLinkedListNode):
     
-    previous = node.previous
-    next = node.next
-    
     # Case 1: If my node itself is None, then can't delete so just return
     if node is None: return
+    
+    previous = node.previous
+    next = node.next
     
     # Case 2: If my node is the last node 
     if next is None:
