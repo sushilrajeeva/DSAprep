@@ -143,20 +143,37 @@ def del_kth_ele(head: Node, k: int):
     
     current = head
     
-    for _ in range(1, k):  # Move to the node just before the k'th node
-        if current.next is None:  # If we reach the end before k, return the head
-            return head
-        # This logic will point my current to just one node before the deletion node
-        current = current.next
+    # for _ in range(1, k):  # Move to the node just before the k'th node
+    #     if current.next is None:  # If we reach the end before k, return the head
+    #         return head
+    #     # This logic will point my current to just one node before the deletion node
+    #     current = current.next
             
-    if current.next:
-        current.next = current.next.next
+    # if current.next:
+    #     current.next = current.next.next
+    
+    # return head
+    
+    # Simple logic
+    previous = None
+    count = 0
+    
+    while current is not None:
         
+        if count == k:
+            previous.next = current.next 
+            break
+    
+        previous = current
+        current = current.next
+        
+        count += 1
+            
     return head
             
             
 arr = [1, 4, 5, 7, 2]
 k = 2
 head = arr_to_LL(arr)
-print("Linked List before Deletion of", 5,"th ele:", print_linkedList(head))
-print("Linked List after Deletion of", 5,"th ele:", print_linkedList(del_kth_ele(head, k)))
+print("Linked List before Deletion of", k,"th ele:", print_linkedList(head))
+print("Linked List after Deletion of", k,"th ele:", print_linkedList(del_kth_ele(head, k)))
