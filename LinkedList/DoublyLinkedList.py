@@ -92,7 +92,7 @@ head = arr_to_doubly_linked_list(arr)
 print("Doubly Linked List before deleting tail:", print_doubly_linked_list(head))
 print("Doubly Linked List after deleting tail:", print_doubly_linked_list(del_tail(head)))
 
-# 5. Delete element at the tail/end of doubly linked list
+# 5. Delete element at a given position in doubly linked list
 
 def del_kth_element(head: DoublyLinkedListNode, k) -> DoublyLinkedListNode:
     
@@ -150,6 +150,40 @@ k = 2
 print("Doubly Linked List before deleting element at position", k, ":", print_doubly_linked_list(head))
 print("Doubly Linked List after deleting element at position", k, ":", print_doubly_linked_list(del_kth_element(head, k)))
 
+
+# 6. Delete a given node of doubly linked list (never the head)
+
+def del_node(node: DoublyLinkedListNode):
+    
+    previous = node.previous
+    next = node.next
+    
+    # Case 1: If my node itself is None, then can't delete so just return
+    if node is None: return
+    
+    # Case 2: If my node is the last node 
+    if next is None:
+        previous.next = None
+        node.previous = None
+        return
+    
+    # Case 2: my node is in middle of doubly linked list
+    previous.next = next
+    next.previous = previous
+    
+    node.previous = None
+    node.next = None
+    
+    return
+     
+    
+
+arr = [1, 2, 3, 4, 5, 6]
+head = arr_to_doubly_linked_list(arr)
+node = head.next.next.next
+print("Doubly Linked List before deleting the node", node.value, ":", print_doubly_linked_list(head))
+del_node(node)
+print("Doubly Linked List after deleting the node", node.value, ":", print_doubly_linked_list(head))
 
 
         
