@@ -206,7 +206,7 @@ print("Doubly Linked List before inserting", element, "at the head:", print_doub
 print("Doubly Linked List after inserting", element, "at the head:", print_doubly_linked_list(insert_head(head, element)))  
 
 
-# 7. Insert an element at the head / start of the doubly linked list
+# 7. Insert an element at the end / tail of the doubly linked list
 
 def insert_tail(head: DoublyLinkedListNode, element: int) -> DoublyLinkedListNode:
     
@@ -233,6 +233,40 @@ head = arr_to_doubly_linked_list(arr)
 element = 10
 print("Doubly Linked List before inserting", element, "at the tail:", print_doubly_linked_list(head))
 print("Doubly Linked List after inserting", element, "at the tail:", print_doubly_linked_list(insert_tail(head, element)))  
+
+
+# 8. Insert an element before the end / tail of the doubly linked list
+
+def insert_before_tail(head: DoublyLinkedListNode, element: int) -> DoublyLinkedListNode:
+    
+    newNode = DoublyLinkedListNode(element)
+    if not head or not head.next:
+        newNode.next = head
+        if head is not None:
+            head.previous = newNode
+        return newNode
+    
+    # Reach the end of the linked list
+    current = head
+    
+    while current.next.next is not None:
+        current = current.next
+        
+    temp = current.next
+    current.next = newNode
+    newNode.previous = current
+    newNode.next = temp
+    temp.previous = newNode
+    
+    return head
+
+
+        
+arr = [1, 2, 3, 4, 5, 6]
+head = arr_to_doubly_linked_list(arr)
+element = 10
+print("Doubly Linked List before inserting", element, "before the tail:", print_doubly_linked_list(head))
+print("Doubly Linked List after inserting", element, "before the tail:", print_doubly_linked_list(insert_before_tail(head, element)))  
 
 
 
