@@ -59,3 +59,31 @@ def len_linked_list(head: Node):
     return length
 
 print("Length of the above linked list is: ",len_linked_list(head))
+
+# 4. Search in a linked list
+
+def element_in_linked_list(head: Node, search: int) -> bool:
+    
+    if not head:
+        return False
+    if search == "":
+        return True
+    
+    current = head
+    
+    while current is not None:
+        
+        if current.value == search:
+            return True
+        
+        current = current.next
+        
+    return False
+
+search = 4
+
+arr = [1, 4, 5, 7, 3, 5]
+
+head = arr_to_LL(arr)
+
+print(element_in_linked_list(head, search))
