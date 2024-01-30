@@ -23,7 +23,7 @@ def arr_to_LL(arr: list) -> Node:
     return head
 
 # 2. Print all elements of linkedlist -> traversal
-def print_linkedList(head: Node):
+def print_linkedList(head: Node) -> str:
     
     current = head
     
@@ -44,7 +44,7 @@ print(print_linkedList(head))
 
 # 3. Length of a linked list
 
-def len_linked_list(head: Node):
+def len_linked_list(head: Node) -> int:
     
     if head is None:
         return 0
@@ -90,7 +90,7 @@ print(element_in_linked_list(head, search))
 
 # 5. Delete head of linked list
 
-def del_head(head: Node):
+def del_head(head: Node) -> Node:
     
     if not head or not head.next:
         return None
@@ -105,3 +105,27 @@ arr = [1, 4, 5, 7, 2]
 head = arr_to_LL(arr)
 print("Linked List before Deletion of head", print_linkedList(head))
 print("Linked List after Deletion of head",print_linkedList(del_head(head)))
+
+# 6. Delete tail of linked list
+
+def del_tail(head: Node) -> Node:
+    
+    if not head or not head.next:
+        return None
+    
+    current = head
+    
+    while current.next.next is not None:
+        # This logic will make my current point to the second last element of the node after while ends
+        current = current.next
+    
+    # to delete last i have to point my current (second last element) next to None
+    current.next = None
+    
+    return head
+
+arr = [1, 4, 5, 7, 2]
+
+head = arr_to_LL(arr)
+print("Linked List before Deletion of tail", print_linkedList(head))
+print("Linked List after Deletion of tail",print_linkedList(del_tail(head)))
