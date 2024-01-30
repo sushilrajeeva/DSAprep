@@ -64,6 +64,36 @@ arr = [1, 2, 3, 4, 5, 6]
 head = arr_to_doubly_linked_list(arr)
 print("Doubly Linked List before deleting head:", print_doubly_linked_list(head))
 print("Doubly Linked List after deleting head:", print_doubly_linked_list(del_head(head)))
+
+
+# 4. Delete element at the tail/end of doubly linked list
+
+def del_tail(head: DoublyLinkedListNode) -> DoublyLinkedListNode:
+    
+    if not head or not head.next: 
+        return None
+    
+    current = head
+    
+    while current.next is not None:
+        # This will make my current point to the last element
+        current = current.next
+        
+    previous = current.previous
+    
+    previous.next = None
+    current.previous = None
+    
+    return head
+        
+
+arr = [1, 2, 3, 4, 5, 6]
+head = arr_to_doubly_linked_list(arr)
+print("Doubly Linked List before deleting tail:", print_doubly_linked_list(head))
+print("Doubly Linked List after deleting tail:", print_doubly_linked_list(del_tail(head)))
+
+
+
         
     
     
