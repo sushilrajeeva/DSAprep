@@ -204,4 +204,36 @@ head = arr_to_doubly_linked_list(arr)
 element = 10
 print("Doubly Linked List before inserting", element, "at the head:", print_doubly_linked_list(head))
 print("Doubly Linked List after inserting", element, "at the head:", print_doubly_linked_list(insert_head(head, element)))  
+
+
+# 7. Insert an element at the head / start of the doubly linked list
+
+def insert_tail(head: DoublyLinkedListNode, element: int) -> DoublyLinkedListNode:
+    
+    newNode = DoublyLinkedListNode(element)
+    if not head:
+        return newNode
+    
+    # Reach the end of the linked list
+    
+    current = head
+    
+    while current.next is not None:
+        current = current.next
+        
+    current.next = newNode
+    newNode.previous = current
+    
+    return head
+
+
+        
+arr = [1, 2, 3, 4, 5, 6]
+head = arr_to_doubly_linked_list(arr)
+element = 10
+print("Doubly Linked List before inserting", element, "at the tail:", print_doubly_linked_list(head))
+print("Doubly Linked List after inserting", element, "at the tail:", print_doubly_linked_list(insert_tail(head, element)))  
+
+
+
     
