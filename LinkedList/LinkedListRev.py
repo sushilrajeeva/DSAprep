@@ -206,3 +206,16 @@ del_val = 4
 head = arr_to_LL(arr)
 print("Linked List before Deletion of", del_val,":", print_linkedList(head))
 print("Linked List after Deletion of", del_val,":", print_linkedList(del_node(head, del_val)))
+
+
+# 9. Insert an element at the head of the linked list
+
+def insert_head(head: Node, element: int) -> Node:
+    
+    return Node(element, head)
+
+arr = [1, 4, 5, 7, 2]
+ele = 4
+head = arr_to_LL(arr)
+print("Linked List before Insertion of", ele," in head:", print_linkedList(head))
+print("Linked List after Insertion of", ele," in head:", print_linkedList(insert_head(head, ele)))
