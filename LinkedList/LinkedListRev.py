@@ -87,3 +87,21 @@ arr = [1, 4, 5, 7, 3, 5]
 head = arr_to_LL(arr)
 
 print(element_in_linked_list(head, search))
+
+# 5. Delete head of linked list
+
+def del_head(head: Node):
+    
+    if not head or not head.next:
+        return None
+    
+    head.value = head.next.value
+    head.next = head.next.next 
+    
+    return head
+
+arr = [1, 4, 5, 7, 2]
+
+head = arr_to_LL(arr)
+print("Linked List before Deletion of head", print_linkedList(head))
+print("Linked List after Deletion of head",print_linkedList(del_head(head)))
