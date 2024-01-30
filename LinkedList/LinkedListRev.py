@@ -252,7 +252,10 @@ def insert_k_position(head: Node, element: int, position: int) -> Node:
     
     new_node = Node(element)
     
-    if head is None: return new_node
+    if head is None: 
+        if position == 0: return new_node
+        
+        return None
     
     if position == 0:
         new_node.next = head
@@ -289,3 +292,44 @@ print("Linked List before Insertion of", ele,"in", position, "th position:", pri
 print("Linked List after Insertion of", ele,"in", position, "th position:", print_linkedList(insert_k_position(head, ele, position)))
 
 
+# 11. Insert an element before the value the linked list
+
+def insert_ele_before_value(head: Node, element: int, value: int) -> Node:
+    
+    new_node = Node(element)
+    
+    if head is None: 
+        if value == None: return new_node
+        return None
+    
+    if head.value == value:
+        new_node.next = head
+        return new_node
+    
+    previous, current= None, head
+    
+    while current is not None:
+        
+        if current.value == value:
+            previous.next = new_node
+            new_node.next = current
+            return head
+        
+        previous = current
+        current = current.next
+        
+        
+    # Handeling the edge case when the element to add is at the end position
+    # at this point count will be length of the linked list, that means it tells us to add at the end of the linked list
+    # That means my current is pointing to None
+    if value == None:
+        previous.next = new_node
+      
+    return head
+
+arr = [1, 4, 5, 7, 2]
+ele = 100
+value = 4
+head = arr_to_LL(arr)
+print("Linked List before Insertion of", ele,"before", value, ":", print_linkedList(head))
+print("Linked List after Insertion of", ele,"before", value, ":", print_linkedList(insert_ele_before_value(head, ele, value)))
