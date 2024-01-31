@@ -345,4 +345,34 @@ print("Doubly Linked List before inserting", element, "before node", node.value,
 insert_at_node(node, element)
 print("Doubly Linked List after inserting", element, "before node", node.value,":", print_doubly_linked_list(head))  
 
+
+# 11. reverse a  doubly linked list
+
+def reverse_doubly_linked_list(head: DoublyLinkedListNode):
+    
+    if not head or not head.next:
+        return head
+    
+    previous = None
+    current = head
+    
+    while current is not None:
+        
+        previous = current.previous
+        
+        current.previous = current.next
+        current.next = previous
+        
+        current = current.previous
+        
+    return previous.previous
+
+
+        
+arr = [1, 2, 3, 4, 5, 6]
+head = arr_to_doubly_linked_list(arr)
+print("Doubly Linked List before reversing", print_doubly_linked_list(head))
+print("Doubly Linked List after reversing", print_doubly_linked_list(reverse_doubly_linked_list(head)))  
+
+
     
