@@ -1,11 +1,11 @@
 def tower_of_hanoi():
     
     n = int(input("Enter number of disks: "))
-    tower1 = input("Enter name of tower 1: ")
-    tower2 = input("Enter name of tower 2: ")
-    tower3 = input("Enter name of tower 3: ")
+    source = input("Enter name of source: ")
+    destination = input("Enter name of destination: ")
+    helper = input("Enter name of helper: ")
     
-    return toh(n, tower1, tower2, tower3)
+    return toh(n, source, destination, helper)
     
     
     
@@ -15,8 +15,8 @@ def toh(n: int, source, destination, helper):
         return
     
     toh(n-1, source, helper, destination) # Will print the instructions to move n - 1 disks from t1 to t3 using t2
-    print(str(n) + "[" + str(source) + " -> " + str(destination) + "]")
-    toh(n-1, helper, destination, source)
+    print("Transfer disk " + str(n) + " from " + str(source) + " -> " + str(destination))
+    toh(n-1, helper, destination, helper)
     
     
 tower_of_hanoi()
