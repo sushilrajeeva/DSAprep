@@ -145,5 +145,39 @@ def print_subsequence(string: str)-> None:
 print("Print all the sub sequence of a given string")
 string = "abc"
 print_subsequence(string)
+
+# Print all the unique subsequence of a given string
+
+def print_unique_subsequence(string: str) -> None:
+    
+    index = 0
+    unique = set()
+    newString = ""
+    
+    def recursive(string: str, index: int, newString: str, unique: set) -> None:
+        
+        # Base Condition
+        if index == len(string):
+            unique.add(newString)
+            return
+        
+        
+        # Faith
+        
+        currentElement = string[index]
+        
+        # To Include
+        recursive(string, index + 1, newString + currentElement, unique)
+        
+        # Not to include
+        recursive(string, index + 1, newString, unique)
+        
+    recursive(string, index, newString, unique)
+    
+    print(unique)
+    
+print("Print all the unique subsequence of a given string")
+string = "aaa"
+print_unique_subsequence(string)
             
         
