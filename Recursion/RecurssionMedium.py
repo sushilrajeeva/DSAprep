@@ -85,6 +85,33 @@ print("Move all key char to the end of the string")
 string = "axbcxxd"
 key = "x"
 print(move_all_key_to_end(string, key))
-                
+
+
+# Remove duplicates from the string
+
+def remove_duplicates(string: str) -> str:
+    
+    freqArr = [0] * 26
+    index = 0
+    newString = ""
+    
+    def recursive(string: str, index: int, freqArr: list, newString: str) -> str:
+        
+        if len(string) == index:
+            return newString
+        
+        # Faith
+        freqArr[ord(string[index]) - 97] += 1
+        if freqArr[ord(string[index]) - 97] == 1:
+            newString += string[index]
+            
+        return recursive(string, index + 1, freqArr, newString)
+    
+    return recursive(string, index, freqArr, newString)
+
+print("Remove duplicates in a given string")
+string = "abbccda"
+
+print(remove_duplicates(string))
             
         
