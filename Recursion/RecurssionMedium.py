@@ -57,6 +57,34 @@ def isSorted(arr: list) -> bool:
 print("Checking if the array is strictly sorted or not")
 arr = [1, 2, 3, 4, 4]
 print(isSorted(arr))
+
+# Move all 'x' to the end of the string
+
+def move_all_key_to_end(string: str, key: string) -> str:
+    
+    newString = ""
+    index, count = 0, 0
+    
+    def recursive(string: str, key: str, index: int, count: int, newString: str) -> str:
+        
+        # Base Condition
+        if len(string) == index:
+            return newString + key*count
+        
+        # Faith
+        if string[index] == key:
+            count += 1
+        else:
+            newString += string[index]
+        
+        return recursive(string, key, index + 1, count, newString)
+    
+    return recursive(string, key, index, count, newString)
+
+print("Move all key char to the end of the string")
+string = "axbcxxd"
+key = "x"
+print(move_all_key_to_end(string, key))
                 
             
         
