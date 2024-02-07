@@ -200,4 +200,38 @@ def all_indices(arr: list, key: int, index: int = 0, count: int = 0) -> list:
 print("Given an array create a new array that contains all the indexes of the element that is in given in given array")
 arr = [1, 2, 3, 3, 2, 2, 5, 6]
 print(all_indices(arr, 2))
+
+
+# Print keypad combination
+
+def keypad_combinaiton(digits: str) -> list:
+    
+    if not digits:
+        return []
+    
+    keypad = [".", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tu", "vwx", "yz"]
+    result = []
+    
+    def recursive(index: int = 0, subString: str = "") -> None:
+        
+        if index == len(digits):
+            if subString:
+                result.append(subString)
+            return
+        
+        
+        # Work
+        key = digits[index]
+        keyword = keypad[int(key)]
+        for char in keyword:
+            recursive(index + 1, subString + char)
+            
+            
+    recursive()
+    return result
+    
+print("Print keypad combination")
+string = "23"
+print(keypad_combinaiton(string))
+            
         
