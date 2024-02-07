@@ -39,7 +39,24 @@ key = "a"
 string = "abaacdaefaah"
 print(first_and_last(string, key))
 
+# Check if an array is sorted (strictly increasing)
 
+
+def isSorted(arr: list) -> bool:
+    
+    # Base Case
+    if len(arr) <= 1:
+        return True
+    
+    # Work
+    if not (arr[1] > arr[0]):
+        return False
+    # Faith
+    return isSorted(arr[1:])
+        
+print("Checking if the array is strictly sorted or not")
+arr = [1, 2, 3, 4, 4]
+print(isSorted(arr))
                 
             
         
