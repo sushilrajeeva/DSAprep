@@ -233,5 +233,37 @@ def keypad_combinaiton(digits: str) -> list:
 print("Print keypad combination")
 string = "23"
 print(keypad_combinaiton(string))
+
+
+# Print all permutation of a given string
+
+def string_permutation(string: str) -> None:
+    
+    permutationList = []
+    
+    def recursive(string, permutation: str = "") -> None:
+        
+        # Base Condition
+        if len(string) == 0:
+            permutationList.append(permutation)
+            return
+        
+        # Work
+        for i in range(len(string)):
+            
+            currentChar = string[i]
+            newString = string[:i] + string[i+1:]
+            recursive(newString, permutation + currentChar)
+    recursive(string, "")
+    
+    print(permutationList)
+            
+            
+print("Print all permutation of a given string")
+string = "abc"
+string_permutation(string)
+
+            
+        
             
         
