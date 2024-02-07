@@ -179,5 +179,25 @@ def print_unique_subsequence(string: str) -> None:
 print("Print all the unique subsequence of a given string")
 string = "aaa"
 print_unique_subsequence(string)
-            
+
+# Given an array create a new array that contains all the indexes of the element that is in given in given array
+
+def all_indices(arr: list, key: int, index: int = 0, count: int = 0) -> list:
+    
+    if index == len(arr):
+        return [0] * count
+    
+    
+    if arr[index] == key:
+        result = all_indices(arr, key, index + 1, count + 1)
+        result[count] = index
+        return result
+        
+    else:
+        result = all_indices(arr, key, index + 1, count)
+        return result
+    
+print("Given an array create a new array that contains all the indexes of the element that is in given in given array")
+arr = [1, 2, 3, 3, 2, 2, 5, 6]
+print(all_indices(arr, 2))
         
