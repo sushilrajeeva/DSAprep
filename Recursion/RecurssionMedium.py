@@ -113,5 +113,37 @@ print("Remove duplicates in a given string")
 string = "abbccda"
 
 print(remove_duplicates(string))
+
+# Print all the subsequences of a given string
+
+def print_subsequence(string: str)-> None:
+    
+    index = 0
+    subsequence = []
+    newString = ""
+    
+    def recursive(string: str, index: int, subsequence: list, newString: str) -> list:
+        
+        if index == len(string):
+            subsequence.append(newString)
+            return
+        
+        
+        # Faith
+        currentElement = string[index]
+        
+        # to be included
+        recursive(string, index + 1, subsequence, newString + currentElement)
+        
+        # not to be included
+        recursive(string, index + 1, subsequence, newString)
+        
+    recursive(string, index, subsequence, newString)
+        
+    print(subsequence)
+    
+print("Print all the sub sequence of a given string")
+string = "abc"
+print_subsequence(string)
             
         
