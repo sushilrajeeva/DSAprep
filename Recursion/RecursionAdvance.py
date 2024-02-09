@@ -130,9 +130,39 @@ def get_maze_paths_jump(n: int, m: int, i: int = 0, j: int = 0) -> List[str]:
     return paths
 
 
-n, m = 4, 4
+n, m = 3, 3
 print("Get all the paths to the maze with jump of dimension {n} x {m}")
 print(get_maze_paths_jump(n, m))
+
+# Without storing just print all the subsequence
+
+def print_subsequence(string: str)-> None:
+    
+    index = 0
+    newString = ""
+    
+    def recursive(string: str, index: int, newString: str) -> list:
+        
+        if index == len(string):
+            #subsequence.append(newString)
+            print(newString)
+            return
+        
+        
+        # Faith
+        currentElement = string[index]
+        
+        # to be included
+        recursive(string, index + 1,newString + currentElement)
+        
+        # not to be included
+        recursive(string, index + 1, newString)
+        
+    recursive(string, index, newString)
+    
+print("Print all the sub sequence of a given string")
+string = "abc"
+print_subsequence(string)
         
 
 
