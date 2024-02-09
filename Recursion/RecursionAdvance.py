@@ -103,7 +103,37 @@ print("Get all the paths to the maze of dimension {n} x {m}")
 print(get_maze_paths(n, m))
 
 
+# Get all the paths to the maze with jump
 
+def get_maze_paths_jump(n: int, m: int, i: int = 0, j: int = 0) -> List[str]:
+    
+    # Base Condition
+    if i == n or j == m:
+        return []
+    
+    if i == n - 1 and j == m - 1:
+        return [""]
+    
+    paths = []
+    # Right Moves
+    for r in range(1, m - j + 1):
+        rightPaths = get_maze_paths_jump(n, m , i, j + r)
+        for path in rightPaths:
+            paths.append("R" + str(r) + path)
+    
+    # Down Moves
+    for d in range(1, n - i + 1):
+        downPaths = get_maze_paths_jump(n, m, i + d, j)
+        for path in downPaths:
+            paths.append("D" + str(d) + path)
+            
+    return paths
+
+
+n, m = 4, 4
+print("Get all the paths to the maze with jump of dimension {n} x {m}")
+print(get_maze_paths_jump(n, m))
+        
 
 
     
