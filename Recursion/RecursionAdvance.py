@@ -2,7 +2,7 @@ from typing import *
 
 # Get all the stair paths given a number - valid steps are 1 , 2 and 3 only
 
-def stair_path(n: int) -> List[str]:
+def get_stair_path(n: int) -> List[str]:
     
     # Positive Base case: if n reach 0 steps then add "" and return
     if n == 0:
@@ -15,9 +15,9 @@ def stair_path(n: int) -> List[str]:
     
     # Faith
     # path one will give me all the paths array after taking 1 step to destination
-    paths1 = stair_path(n-1)
-    paths2 = stair_path(n-2)
-    paths3 = stair_path(n-3)
+    paths1 = get_stair_path(n-1)
+    paths2 = get_stair_path(n-2)
+    paths3 = get_stair_path(n-3)
     paths = []
     
     # Expectation
@@ -36,7 +36,31 @@ def stair_path(n: int) -> List[str]:
         
 n = 4   
 print(f"All the possible valid paths for given number {n}")
-print(stair_path(n))
+print(get_stair_path(n))
+
+
+# Print all the stair paths given a number - valid steps are 1 , 2 and 3 only without storing it
+def print_stair_path(n: int, path: str = "") -> List[str]:
+    
+    # Positive Base case: if n reach 0 steps then add "" and return
+    if n == 0:
+        print(path)
+        return
+    
+    # Negative base case: if n reach less than 0 then add empty array
+    if n < 0:
+        return
+    
+    
+    # Faith
+    # path one will give me all the paths array after taking 1 step to destination, similarly i will do for 2 and 3.
+    print_stair_path(n-1, path + "1")
+    print_stair_path(n-2, path + "2")
+    print_stair_path(n-3, path + "3")
+        
+n = 4   
+print(f"Print all the possible valid paths for given number {n} without using space")
+print_stair_path(n)
 
 
 # Count total paths in maze to move from (0, 0) to (n, m)
