@@ -1,3 +1,4 @@
+from typing import *
 # Count total paths in maze to move from (0, 0) to (n, m)
 
 def count_maze(n: int, m: int) -> None:
@@ -28,5 +29,45 @@ n, m = 3, 3
 print(f"Count total paths in maze to move from (0, 0) to ({n}, {m})")
 
 count_maze(n, m)
+
+
+# Get all the stair paths given a number - valid steps are 1 , 2 and 3 only
+
+def stair_path(n: int) -> List[str]:
+    
+    # Positive Base case: if n reach 0 steps then add "" and return
+    if n == 0:
+        return [""]
+    
+    # Negative base case: if n reach less than 0 then add empty array
+    if n < 0:
+        return [] 
+    
+    
+    # Faith
+    # path one will give me all the paths array after taking 1 step to destination
+    paths1 = stair_path(n-1)
+    paths2 = stair_path(n-2)
+    paths3 = stair_path(n-3)
+    paths = []
+    
+    # Expectation
+    # I will add each paths to path but to its respective i will add 1, 2 or 3 corresponding to it before adding to path
+    
+    for path in paths1:
+        paths.append("1" + path)
+        
+    for path in paths2:
+        paths.append("2" + path)
+        
+    for path in paths3:
+        paths.append("3" + path)
+        
+    return paths
+        
+n = 4   
+print(f"All the possible valid paths for given number {n}")
+print(stair_path(n))
+    
         
         
