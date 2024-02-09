@@ -202,37 +202,7 @@ arr = [1, 2, 3, 3, 2, 2, 5, 6]
 print(all_indices(arr, 2))
 
 
-# Print keypad combination
 
-def keypad_combinaiton(digits: str) -> list:
-    
-    if not digits:
-        return []
-    
-    keypad = [".", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tu", "vwx", "yz"]
-    result = []
-    
-    def recursive(index: int = 0, subString: str = "") -> None:
-        
-        if index == len(digits):
-            if subString:
-                result.append(subString)
-            return
-        
-        
-        # Work
-        key = digits[index]
-        keyword = keypad[int(key)]
-        for char in keyword:
-            recursive(index + 1, subString + char)
-            
-            
-    recursive()
-    return result
-    
-print("Print keypad combination")
-string = "23"
-print(keypad_combinaiton(string))
 
 
 # Print all permutation of a given string
@@ -265,5 +235,66 @@ string_permutation(string)
 
             
         
+# Print keypad combination with memory
+
+def get_keypad_combinaiton(digits: str) -> list:
+    
+    if not digits:
+        return []
+    
+    keypad = [".", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tu", "vwx", "yz"]
+    result = []
+    
+    def recursive(index: int = 0, subString: str = "") -> None:
+        
+        if index == len(digits):
+            if subString:
+                result.append(subString)
+            return
+        
+        
+        # Work
+        key = digits[index]
+        keyword = keypad[int(key)]
+        for char in keyword:
+            recursive(index + 1, subString + char)
             
+            
+    recursive()
+    return result
+    
+print("Print keypad combination")
+string = "23"
+print(get_keypad_combinaiton(string))
+
+
+# Print keypad combination without storing in memory
+
+def print_keypad_combinaiton(digits: str) -> list:
+    
+    if not digits:
+        return []
+    
+    keypad = [".", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tu", "vwx", "yz"]
+    
+    def recursive(index: int = 0, subString: str = "") -> None:
+        
+        if index == len(digits):
+            if subString:
+                print(subString)
+            return
+        
+        
+        # Work
+        key = digits[index]
+        keyword = keypad[int(key)]
+        for char in keyword:
+            recursive(index + 1, subString + char)
+            
+            
+    recursive()
+    
+print("Print keypad combination")
+string = "23"
+print_keypad_combinaiton(string)     
         
