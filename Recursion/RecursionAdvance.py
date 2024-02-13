@@ -189,7 +189,7 @@ string = "abc"
 print_subsequence(string)
 
 
-# Flood Fill ()
+# Flood Fill
         
 # You are only allowed to go top down left and right and if there is a 1 (obstacle) you can't go there if there is 0 you can go there
 # so traverse through a n*m matrix
@@ -231,6 +231,39 @@ maze = [
 ]
 print(f" Flood Fill of matrix {n}x{m} = {maze}")
 floodFill(maze, 0, 0, "", visited)
+
+
+# Target Sum subset
+# You are given an array and you have to return all the subsets that adds up to a sum k
+
+def target_sum(arr: List[int], target: int) -> List[List[int]]:
+    
+    result = []
+    
+    def targetSum(arr: List[int], target: int, index: int = 0, subset: List[int] = []) -> None:
+        
+        # Base Condition
+        if index == len(arr):
+            if sum(subset) == target:
+                result.append(subset)
+            return
+        
+        
+        # Include
+        targetSum(arr, target, index + 1, subset+[arr[index]])
+        
+        # Exclude
+        targetSum(arr, target, index + 1, subset)
+        
+    targetSum(arr, target)
+    
+    return result
+
+arr = [10, 20, 30, 40, 50]
+target = 60
+print("Given arr", arr, "and target = ", target)
+print(target_sum(arr, target))
+
 
     
         
