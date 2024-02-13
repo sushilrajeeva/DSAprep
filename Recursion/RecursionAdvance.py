@@ -187,8 +187,50 @@ def print_subsequence(string: str)-> None:
 print("Print all the sub sequence of a given string")
 string = "abc"
 print_subsequence(string)
-        
 
+
+# Flood Fill ()
+        
+# You are only allowed to go top down left and right and if there is a 1 (obstacle) you can't go there if there is 0 you can go there
+# so traverse through a n*m matrix
+
+
+def floodFill(maze: List[List[int]], row: int, col: int, path: str, visited: List[List[bool]]):
+    
+    # Exit Condition
+    if row < 0 or col < 0 or row == len(maze) or col == len(maze[0]) or maze[row][col] == 1 or visited[row][col] == True:
+        return
+    
+    # Print condition
+    if row == len(maze) - 1 and col == len(maze[0]) - 1:
+        print(path)
+        return
+    
+    visited[row][col] = True
+    # Top
+    floodFill(maze, row - 1, col, path + "T", visited)
+    # Left
+    floodFill(maze, row, col - 1, path + "L", visited)
+    # Right
+    floodFill(maze, row, col + 1, path + "R", visited)
+    # Down
+    floodFill(maze, row + 1, col, path + "D", visited)
+    
+    #Reset visited
+    visited[row][col] = False
+    
+    
+n = 4
+m = 3
+visited = [[False for _ in range(m)] for _ in range(n)]
+maze = [
+    [0, 1, 1],
+    [0, 0, 1],
+    [1, 0, 0],
+    [0, 1, 0]
+]
+print(f" Flood Fill of matrix {n}x{m} = {maze}")
+floodFill(maze, 0, 0, "", visited)
 
     
         
