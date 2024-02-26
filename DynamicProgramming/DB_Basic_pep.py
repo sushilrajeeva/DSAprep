@@ -3,24 +3,27 @@ from typing import *
 # You are at a stair and you have 3 options, either to move one step or two or three
 # Count and return all the possible ways you can use to go from n to 0
 # Using recursion
-def get_stair_path_ways(steps: int, memory: dict = {}) -> int:
+def get_stair_path_ways(steps: int, dp: List[int] = None) -> int:
     
     # Base case / Exit Condition
+    if dp is None:
+        dp = [0] * (n+1)
+
     if steps == 0:
         return 1
     elif steps < 0:
         return 0
     
-    if memory.get(steps, 0) > 0:
-        return memory[steps]
+    if dp[steps] > 0:
+        return dp[steps]
     
     # Faith - basic work
-    n1 = get_stair_path_ways(steps - 1, memory)
-    n2 = get_stair_path_ways(steps - 2, memory)
-    n3 = get_stair_path_ways(steps - 3, memory)
+    n1 = get_stair_path_ways(steps - 1, dp)
+    n2 = get_stair_path_ways(steps - 2, dp)
+    n3 = get_stair_path_ways(steps - 3, dp)
     number_of_paths = n1 + n2 + n3
     # Saving this in my memory
-    memory[steps] = number_of_paths
+    dp[steps] = number_of_paths
 
     return number_of_paths
 
