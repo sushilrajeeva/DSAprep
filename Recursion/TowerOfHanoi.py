@@ -9,7 +9,7 @@ def tower_of_hanoi():
     
     
     
-def toh(n: int, source, destination, helper):
+def toh(n: int, source: str, destination: str, helper: str):
     
     if n == 0:
         return

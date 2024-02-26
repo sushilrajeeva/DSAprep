@@ -1,7 +1,8 @@
+from typing import Optional, Union
 #Recursion:
 # When a function calls itself until a specific condition is met is called Recursion
 
-def reverseString(string):
+def reverseString(string: str) -> str:
     # What is the base case?
     if(string == ""):
         return ""
@@ -14,7 +15,7 @@ string = "Hello World!"
 
 print("Reverse of", string, "is", reverseString(string))
 
-def isPalindrome(string)-> bool:
+def isPalindrome(string: str)-> bool:
     
     if(len(string) == 0 or len(string) == 1):
         return True
@@ -30,7 +31,7 @@ print("Is", string, "a palindrome? :", isPalindrome(string))
    
 # Convert a number (Decimal to Binary)
 
-def findBinary(decimal: int, result = ""):
+def findBinary(decimal: int, result: str = "") -> str:
     
     if(decimal == 0):
         return result
@@ -105,7 +106,7 @@ rightTriangle(height)
 
 class Node:
     
-    def __init__(self, value, next = None):
+    def __init__(self, value: Union[int, str], next = None):
         self.value = value
         self.next = next
         
@@ -123,7 +124,7 @@ def print_nodes(head: Node):
     return print_nodes(head.next)
         
 
-def reverseLinkedList(current: Node, previous: Node = None) -> Node:
+def reverseLinkedList(current: Optional[Node], previous: Optional[Node] = None) -> Optional[Node]:
     
     #Exit Condition
     if(current is None):
