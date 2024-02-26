@@ -92,6 +92,31 @@ def fib_with_tab(n: int) -> int:
 
     return dp[-1]
 
+
+# Calculate fibbonaci
+# Using Tabulation Optimized space
+# To note i only care about current, and previous and previous's previous variable
+def fib_with_tab_optimized(n: int) -> int:
+    
+    
+    if n == 0:
+        return 0
+    
+    if n == 1 or n == 2:
+        return 1
+    
+    previous1 = 1
+    previous2 = 0
+    
+
+    for i in range(2, n + 1):
+        calculation = previous1 + previous2
+        previous2 = previous1
+        previous1 = calculation
+
+    return previous1
+
 n = 6
 print(f"Memoization : Calculate {n}th fibbonaci", fib_with_mem(n))
 print(f"Tabulation : Calculate {n}th fibbonaci", fib_with_tab(n))
+print(f"Optimized Tabulation : Calculate {n}th fibbonaci", fib_with_tab_optimized(n))
