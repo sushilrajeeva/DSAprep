@@ -2,7 +2,7 @@ from typing import *
 # This is the stair path problem
 # You are at a stair and you have 3 options, either to move one step or two or three
 # Count and return all the possible ways you can use to go from n to 0
-
+# Using recursion
 def get_stair_path_ways(steps: int, memory: dict = {}) -> int:
     
     # Base case / Exit Condition
@@ -24,5 +24,30 @@ def get_stair_path_ways(steps: int, memory: dict = {}) -> int:
 
     return number_of_paths
 
-n = 10
+n = 6
 print(f"Number of ways to get from {n} to 0 is:", get_stair_path_ways(n))
+
+# Using tabulation to solve using itration dp
+def get_stair_path_ways_tabulation(steps: int) -> int:
+
+    # Step 1: create a dp array of size n+1
+    dp = [0] * (steps + 1)
+    # Step 2: initialize the first base case value
+    dp[0] = 1
+
+    # Step 3: itterate through the steps from 1, to n and then add the previous 3 steps
+    for i in range(1, steps + 1):
+        if i == 1:
+            dp[i] = dp[i - 1]
+        elif i == 2:
+            dp[i] = dp[i - 1] + dp[i - 2]
+        else:
+            dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3]
+
+    return dp[-1]
+        
+
+
+
+n = 6
+print(f"Tabulation : Number of ways to get from {n} to 0 is:", get_stair_path_ways_tabulation(n))
