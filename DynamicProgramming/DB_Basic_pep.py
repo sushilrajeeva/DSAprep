@@ -7,14 +7,14 @@ def get_stair_path_ways(steps: int, dp: List[int] = None) -> int:
     
     # Base case / Exit Condition
     if dp is None:
-        dp = [0] * (n+1)
+        dp = [-1] * (n+1)
 
     if steps == 0:
         return 1
     elif steps < 0:
         return 0
     
-    if dp[steps] > 0:
+    if dp[steps] != -1:
         return dp[steps]
     
     # Faith - basic work
@@ -54,3 +54,25 @@ def get_stair_path_ways_tabulation(steps: int) -> int:
 
 n = 6
 print(f"Tabulation : Number of ways to get from {n} to 0 is:", get_stair_path_ways_tabulation(n))
+
+# Calculate fibbonaci
+# Using memoization
+def fib_with_mem(n: int, dp: List[int] = None) -> int:
+
+    if dp is None:
+        dp = [-1] * (n + 1)
+
+    if n == 0:
+        return 0
+    if n == 1 or n == 2:
+        return 1
+    
+    if dp[n] != -1:
+        return dp[n]
+    
+    dp[n] = fib_with_mem(n - 1, dp) + fib_with_mem(n - 2, dp)
+
+    return dp[n]
+
+n = 5
+print(f"Memoization : Calculate {n}th fibbonaci", fib_with_mem(n))
