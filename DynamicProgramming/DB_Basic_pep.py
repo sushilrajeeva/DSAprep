@@ -74,5 +74,24 @@ def fib_with_mem(n: int, dp: List[int] = None) -> int:
 
     return dp[n]
 
-n = 5
+
+# Calculate fibbonaci
+# Using Tabulation
+def fib_with_tab(n: int) -> int:
+    
+    dp = [-1] * (n + 1)
+    
+    if n == 0:
+        return 0
+    
+    dp[0] = 0
+    dp[1] = 1
+
+    for i in range(2, n + 1):
+        dp[i] = dp[i - 1] + dp[i - 2]
+
+    return dp[-1]
+
+n = 6
 print(f"Memoization : Calculate {n}th fibbonaci", fib_with_mem(n))
+print(f"Tabulation : Calculate {n}th fibbonaci", fib_with_tab(n))
