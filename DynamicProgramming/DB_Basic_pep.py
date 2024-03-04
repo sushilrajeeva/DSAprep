@@ -27,7 +27,7 @@ def get_stair_path_ways(steps: int, dp: List[int] = None) -> int:
 
     return number_of_paths
 
-n = 6
+n = 18
 print(f"Number of ways to get from {n} to 0 is:", get_stair_path_ways(n))
 
 # Using tabulation to solve using itration dp
@@ -120,3 +120,88 @@ n = 6
 print(f"Memoization : Calculate {n}th fibbonaci", fib_with_mem(n))
 print(f"Tabulation : Calculate {n}th fibbonaci", fib_with_tab(n))
 print(f"Optimized Tabulation : Calculate {n}th fibbonaci", fib_with_tab_optimized(n))
+
+# Maximum sum of non-adjacent elements
+# Problem statement
+# You are given an array/list of ‘N’ integers. You are supposed to return the maximum sum of the subsequence with the constraint that no two elements are adjacent in the given array/list.
+
+# Note:
+# A subsequence of an array/list is obtained by deleting some number of elements (can be zero) from the array/list, leaving the remaining elements in their original order.
+
+# Link: https://www.codingninjas.com/studio/problems/maximum-sum-of-non-adjacent-elements_843261?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTabValue=PROBLEM
+
+# Using memoization technique
+def f_memoization(nums: List[int], n: int = None, dp: List[int] = None) -> int:    
+    # Write your code here.
+    if dp is None:
+        dp = [-1] * (len(nums) + 1)
+    if n is None:
+        n = len(nums) - 1
+
+    if n == 0: return nums[n]
+    if n < 0: return 0
+
+    if dp[n] != -1: return dp[n]
+
+    pick = nums[n] + f_memoization(nums, n-2, dp)
+    no_pick = f_memoization(nums, n-1, dp)
+
+    sol = max(pick, no_pick)
+    dp[n] = sol
+    return dp[n]
+
+# Using Tabulation technique
+def f_tab(nums: List[int], dp: List[int] = None) -> int:
+
+    # Initialization
+    n = len(nums)
+    if dp is None:
+        dp = [-1 for _ in range(n)]
+
+    dp[0] = nums[0]
+
+    for i in range(1, n):
+        pick = nums[i]
+        if i > 1:
+            pick += dp[i-2]
+        no_pick = dp[i-1]
+
+        dp[i] = max(pick, no_pick)
+
+    return dp[n-1]
+
+# Using optimal tabulization technique
+def f_tab_optimal(nums: List[int]) -> int:
+
+    n = len(nums)
+    if n == 0: return 0
+    if n == 1: return nums[0]
+    
+    
+    prev1 = nums[0]
+    prev2 = 0
+
+    for i in range(1, n):
+        pick = nums[i]
+        if i>1:
+            pick += prev2
+        no_pick = prev1
+
+        prev2 = prev1
+        prev1 = max(pick, no_pick)
+
+    return prev1
+
+
+
+
+    
+
+def maximumNonAdjacentSum(nums) -> int:
+    #return f_memoization(nums)
+    #return f_tab(nums)
+    return f_tab_optimal(nums)
+
+nums = [2, 1, 4, 9]
+print(f"Computing the max non adjascent sum for the given Array: {nums}")
+print(f"Max nonadjascent sum = {maximumNonAdjacentSum(nums)}")
