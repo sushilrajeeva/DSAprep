@@ -17,9 +17,11 @@ def ninjaTraining(n: int, points: List[List[int]]) -> int:
     # Write your code here.
     # Creating a n*4 matrix for dp
     dp = [[-1 for j in range(4)] for i in range(n)]
-    # return f(n-1, 3, points)
-    return f_mem(n-1, 3, points, dp)
+    # return f_mem(n-1, 3, points, dp)
+    return f_tab(n, points, dp)
 
+
+# Using Memoization
 def f_mem(day: int, last: int, points: List[List[int]], dp: List[List[int]]) -> int:
 
     # Check if the result for this day and last activity is already computed.
@@ -47,6 +49,24 @@ def f_mem(day: int, last: int, points: List[List[int]], dp: List[List[int]]) -> 
     # Store the maximum points in the DP table and return it.
     dp[day][last] = maximum
     return dp[day][last]
+
+# Using Tabulation
+def f_tab(n: int, points: List[List[int]], dp: List[List[int]]) -> int:
+
+    dp[0][0] = max(points[0][1], points[0][2])
+    dp[0][1] = max(points[0][0], points[0][2])
+    dp[0][2] = max(points[0][0], points[0][1])
+    dp[0][3] = max(points[0][0], points[0][1], points[0][2])
+
+    for day in range(1, n):
+        for last in range(4):
+            dp[day][last] = 0
+            for task in range(3):
+                if task != last:
+                    point = points[day][task] + dp[day-1][task]
+                    dp[day][last] = max(dp[day][last], point)
+
+    return dp[n-1][3]
 
 points = [[1,2,5], [3,1,1], [3,3,3]]
 n = len(points)
