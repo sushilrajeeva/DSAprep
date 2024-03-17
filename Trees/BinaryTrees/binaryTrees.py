@@ -45,7 +45,18 @@ def pre_order_traversal(node: Optional['BinaryTree']) -> None:
         pre_order_traversal(node.left)
         pre_order_traversal(node.right)
 
+def post_order_traversal(node: Optional['BinaryTree']) -> None:
+
+    if node:
+        post_order_traversal(node.left)
+        post_order_traversal(node.right)
+        print(node.data)
+        
+        
+
 print("Printing the given binary tree in Inorder")
 in_order_traversal(root)
 print("Printing the given binary tree in Pre-Order")
 pre_order_traversal(root)
+print("Printing the given binary tree in Post-Order")
+post_order_traversal(root)
