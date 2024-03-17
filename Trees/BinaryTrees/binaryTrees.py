@@ -31,6 +31,8 @@ node3.right = node7
 # Pre-Order Treaversal means go to the root and apply recursively -> Root Left Right
 # Post-Order Traversal means go to extreme left and apply recursively -> Left Right Root
 
+# Level order traversal is BFS
+
 def in_order_traversal(node: Optional['BinaryTree']) -> None:
 
     if node:
