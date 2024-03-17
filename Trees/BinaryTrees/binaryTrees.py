@@ -38,6 +38,14 @@ def in_order_traversal(node: Optional['BinaryTree']) -> None:
         print(node.data)
         in_order_traversal(node.right)
 
-print("Printing the given binary tree in Inorder")
+def pre_order_traversal(node: Optional['BinaryTree']) -> None:
 
+    if node:
+        print(node.data)
+        pre_order_traversal(node.left)
+        pre_order_traversal(node.right)
+
+print("Printing the given binary tree in Inorder")
 in_order_traversal(root)
+print("Printing the given binary tree in Pre-Order")
+pre_order_traversal(root)
