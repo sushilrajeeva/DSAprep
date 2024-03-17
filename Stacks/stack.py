@@ -105,6 +105,24 @@ pushAtBottom(100, stack)
 stack.display()
 print()
 
+# Reversing a Stack
+
+def reverseStack(stack: Stack) -> None:
+
+    if stack.isEmpty():
+        return
+    top = stack.pop()
+    reverseStack(stack)
+    pushAtBottom(top, stack)
+
+print("Current Stack :", end="")
+stack.display()
+print()
+print("Stack after reversing: ", end="")
+reverseStack(stack)
+stack.display()
+print()
+
 
         
     
