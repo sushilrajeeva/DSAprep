@@ -86,6 +86,26 @@ print("After popping two elements , new stack :", end="")
 stack.display()
 print()
 
+# Push at bottom 
+
+def pushAtBottom(data: int, stack: Stack) -> None:
+
+    if stack.isEmpty():
+        stack.push(data)
+        return
+
+    top = stack.pop()
+    pushAtBottom(data, stack)
+    stack.push(top)
+
+print("Add 100 at the bottom of the given stack: ", end="")
+stack.display()
+print("After adding 100 at the bottom, new stack is :", end="")
+pushAtBottom(100, stack)
+stack.display()
+print()
+
+
         
     
 
