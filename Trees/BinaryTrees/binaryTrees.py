@@ -131,4 +131,17 @@ def countNodes(root: Optional['BinaryTree']) -> int:
 
 print("number of nodes in given binary tree :", countNodes(root))
 
+def sumOfNodes(root: Optional['BinaryTree']) -> int:
+
+    if root is None:
+        return 0
+
+
+    leftSubSum = sumOfNodes(root.left)
+    rightSubSum = sumOfNodes(root.right)
+
+    return leftSubSum + rightSubSum + root.data
+
+print("sum of all the nodes of the given binary tree is :", sumOfNodes(root))
+
 
