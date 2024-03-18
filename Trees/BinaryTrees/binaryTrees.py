@@ -1,4 +1,31 @@
 from typing import *
+from collections import *
+
+class Queue:
+
+    def __init__(self):
+        self.queue = deque()
+
+    def isEmpty(self) -> bool:
+        if len(self.queue) == 0:
+            return True
+        return False
+    
+    def enqueue(self, data) -> None:
+        self.queue.append(data) # This adds to the right
+
+    def dequeue(self) -> int:
+        if self.isEmpty():
+            raise IndexError("Queue is Empty")
+        return self.queue.popleft()
+    
+    def peek(self) -> int:
+        if self.isEmpty():
+            print("Empty Queue")
+            return None
+        return self.queue[0]
+
+
 
 class BinaryTree:
 
@@ -62,3 +89,33 @@ print("Printing the given binary tree in Pre-Order")
 pre_order_traversal(root)
 print("Printing the given binary tree in Post-Order")
 post_order_traversal(root)
+
+# BFS
+
+def levelOrder(root: Optional['BinaryTree']) -> None:
+    
+    queue = Queue()
+    queue.enqueue(root)
+    queue.enqueue(None)
+
+    while not queue.isEmpty():
+        curNode: BinaryTree = queue.dequeue()
+
+        if curNode is None:
+            print()
+            if queue.isEmpty():
+                break
+            else:
+                queue.enqueue(None)
+        else:
+            print(curNode.data, end= " ")
+            
+            if curNode.left is not None:
+                queue.enqueue(curNode.left)
+            
+            if curNode.right is not None:
+                queue.enqueue(curNode.right)
+
+print(f"Print the level order of the following tree")
+levelOrder(root)
+
