@@ -119,3 +119,16 @@ def levelOrder(root: Optional['BinaryTree']) -> None:
 print(f"Print the level order of the following tree")
 levelOrder(root)
 
+def countNodes(root: Optional['BinaryTree']) -> int:
+
+    if root is None:
+        return 0
+
+    leftCount = countNodes(root.left)
+    rightCount = countNodes(root.right)
+
+    return leftCount + rightCount + 1
+
+print("number of nodes in given binary tree :", countNodes(root))
+
+
