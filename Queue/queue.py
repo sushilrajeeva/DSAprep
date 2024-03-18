@@ -1,35 +1,60 @@
+from collections import deque
+
 class Queue:
-
     def __init__(self):
-        self.queue = []
-        self.size = 0
+        self.queue = deque()
 
-    def isEmpty(self):
-        return self.size == 0
+    def is_empty(self):
+        return len(self.queue) == 0
     
     def add(self, data):
-        self.queue.append(data)
-        self.size += 1
+        self.queue.append(data)  # Add to the right end
 
     def remove(self):
-        if self.isEmpty():
-            print("Empty Queue")
-            return None
-        front = self.queue.pop(0)  # Directly remove the first element
-        self.size -= 1
-        return front
+        if self.is_empty():
+            raise IndexError("Remove from an empty queue")
+        return self.queue.popleft()  # Remove from the left end efficiently
     
     def peek(self):
-        if self.isEmpty():
+        if self.is_empty():
             print("Empty Queue")
             return None
-        return self.queue[0]
+        return self.queue[0]  # Peek at the leftmost item
     
     def display(self):
-        if self.isEmpty():
+        if self.is_empty():
             print("Queue is empty")
         else:
             print("Queue:", " -> ".join(map(str, self.queue)))
+
+# Example usage
+input_elements = [11, 22, 33, 44]
+queue = Queue()
+
+print("Adding elements to the queue:")
+for ele in input_elements:
+    print(f"Adding {ele}")
+    queue.add(ele)
+    queue.display()
+
+print("\nCurrent front element of the queue:", queue.peek())
+
+print("\nRemoving two elements from the queue:")
+for _ in range(2):
+    removed = queue.remove()
+    print(f"Removed {removed}")
+    queue.display()
+
+print("\nIs the queue empty?:", queue.is_empty())
+
+print("\nRemoving all remaining elements:")
+while not queue.is_empty():
+    removed = queue.remove()
+    print(f"Removed {removed}")
+    queue.display()
+
+print("\nIs the queue empty now?:", queue.is_empty())
+
 
 # Example usage
 input = [11, 22, 33, 44]
