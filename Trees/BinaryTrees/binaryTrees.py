@@ -144,4 +144,17 @@ def sumOfNodes(root: Optional['BinaryTree']) -> int:
 
 print("sum of all the nodes of the given binary tree is :", sumOfNodes(root))
 
+def heightOfTree(root: Optional['BinaryTree']) -> int:
+
+    if root is None:
+        return 0
+
+
+    leftHeight = heightOfTree(root.left)
+    rightHeight = heightOfTree(root.right)
+
+    return max(leftHeight, rightHeight) + 1
+
+print("Height of the given binary tree is :", heightOfTree(root))
+
 
