@@ -157,4 +157,78 @@ def heightOfTree(root: Optional['BinaryTree']) -> int:
 
 print("Height of the given binary tree is :", heightOfTree(root))
 
+# Balanced Binary Tree
+# A Binary Tree is said to be balanced if the height of the left sub tree - height of the right sub tree <= 1 (abs)
+
+def isBalancedBinaryTree(root: Optional['BinaryTree']) -> bool:
+
+    def getBalancedHeight(root: Optional['BinaryTree']) -> int:
+        if root is None:
+            return 0
+        
+        leftHeight = getBalancedHeight(root.left)
+        rightHeight = getBalancedHeight(root.right)
+
+        if leftHeight == -1 or rightHeight == -1:
+            return -1
+
+        if abs(leftHeight - rightHeight) > 1:
+            return -1
+        
+        return max(leftHeight, rightHeight) + 1
+    
+    return True if getBalancedHeight(root) != -1 else False
+
+
+print("The Given Binary Tree is Blananced? :", isBalancedBinaryTree(root))
+
+# Diameter of the Binary Tree
+# It is the maximum path between two leaf nodes
+def getDiameter(root: Optional['BinaryTree']) -> int:
+
+    maximum = [0]
+
+    def findMaxDiameter(root: Optional['BinaryTree']) -> int:
+
+        if root is None:
+            return 0
+        
+        leftDiameter = findMaxDiameter(root.left)
+        rightDiameter = findMaxDiameter(root.right)
+
+        maximum[0] = max(maximum[0], leftDiameter + rightDiameter)
+
+        return max(leftDiameter, rightDiameter) + 1
+    
+    findMaxDiameter(root)
+
+    return maximum[0]
+
+print("The Given Binary Tree has a diameter of :", getDiameter(root))
+
+# Get the maximum sum of any path in the given Binary Tree
+def maxPathSum(root: Optional['BinaryTree']) -> int:
+
+    maxPath = [0]
+
+    def getHeight(root: Optional['BinaryTree']) -> int:
+
+        if root is None:
+            return 0
+        
+        leftPath = getHeight(root.left)
+        rightPath = getHeight(root.right)
+
+        maxPath[0] = max(maxPath[0], leftPath + rightPath + root.data)
+
+        return max(leftPath, rightPath) + root.data
+    
+    getHeight(root)
+    return maxPath[0]
+
+print("The Given Binary Tree has a Maximum Path sum of :", maxPathSum(root))
+
+
+
+
 
