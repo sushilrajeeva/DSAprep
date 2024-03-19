@@ -416,6 +416,42 @@ def right_view(root: Optional['BinaryTree']) -> List[int]:
     return res
 
 print("The Right view of the given Binary Tree :", right_view(root))
+
+# Least Common Ancestor
+# Given a Binary Tree, find the lowest common ancestor (LCA) of two given nodes in the tree
+
+# According to definition of LCA in wikipedia. "The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has bothp and q as descendants ( where we are allowed a node to be descendant of itself)"
+
+def lowestCommonAncestor(root: Optional['BinaryTree'], p: int, q: int) -> int:
+    
+    if not root:
+        return None
+    
+    if root.data == p or root.data == q:
+        return root.data
+    
+    leftPart = lowestCommonAncestor(root.left, p, q)
+    rightPart = lowestCommonAncestor(root.right, p, q)
+
+    # If both part didn't return None then the root is the common ancestor
+    if leftPart and rightPart:
+        return root.data
+    
+    if leftPart:
+        return leftPart
+    if rightPart:
+        return rightPart
+
+
+p, q = 4, 7
+print(f"In the given binary tree the least common ancestor of {p} and {q} is :", lowestCommonAncestor(root, p, q))
+
+
+
+
+
+
+
         
 
 
