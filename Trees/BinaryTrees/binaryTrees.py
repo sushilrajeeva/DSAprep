@@ -209,15 +209,15 @@ print("The Given Binary Tree has a diameter of :", getDiameter(root))
 # Get the maximum sum of any path in the given Binary Tree
 def maxPathSum(root: Optional['BinaryTree']) -> int:
 
-    maxPath = [0]
+    maxPath = [float("-inf")]
 
     def getHeight(root: Optional['BinaryTree']) -> int:
 
         if root is None:
             return 0
         
-        leftPath = getHeight(root.left)
-        rightPath = getHeight(root.right)
+        leftPath = max(getHeight(root.left), 0)
+        rightPath = max(getHeight(root.right), 0)
 
         maxPath[0] = max(maxPath[0], leftPath + rightPath + root.data)
 
@@ -227,6 +227,58 @@ def maxPathSum(root: Optional['BinaryTree']) -> int:
     return maxPath[0]
 
 print("The Given Binary Tree has a Maximum Path sum of :", maxPathSum(root))
+
+# Advanced Level order BFS
+
+# Leetcode 314 : Binary Tree Veritcal order traversal
+
+# Given the root of a binary tree, return the vertical order traversal of its nodes values (i.e, from top to bottom, column by column).
+# If two nodes are in the same row and column, the order should be from left to right
+
+def verticalOrder(root: Optional['BinaryTree']) -> List[List[int]]:
+
+    if not root:
+        return []
+    
+    column_items = defaultdict(list)
+
+    queue = Queue()
+    queue.enqueue((0, root))
+
+    min_x = float("inf")
+    max_x = float("-inf")
+
+    res = []
+
+    # BFS
+    while not queue.isEmpty():
+
+        x, node = queue.dequeue()
+
+        column_items[x].append(node.data)
+
+        min_x = min(min_x, x)
+        max_x = max(max_x, x)
+
+        if node.left:
+            queue.enqueue((x-1, node.left))
+        
+        if node.right:
+            queue.enqueue((x+1, node.right))
+
+
+    for level in range(min_x, max_x + 1):
+        res.append(column_items[level])
+
+    return res
+
+
+print("The Vertical Order Traversal of the given Binary Tree :", verticalOrder(root))
+
+    
+
+        
+
 
 
 
