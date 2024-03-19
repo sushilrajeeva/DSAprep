@@ -24,6 +24,9 @@ class Queue:
             print("Empty Queue")
             return None
         return self.queue[0]
+    
+    def size(self) -> int:
+        return len(self.queue)
 
 
 
@@ -92,32 +95,38 @@ post_order_traversal(root)
 
 # BFS
 
-def levelOrder(root: Optional['BinaryTree']) -> None:
+def levelOrder(root: Optional['BinaryTree']) -> List[List[int]]:
+
+    res = []
+
+    if not root:
+        return res
     
     queue = Queue()
     queue.enqueue(root)
-    queue.enqueue(None)
 
     while not queue.isEmpty():
-        curNode: BinaryTree = queue.dequeue()
+        cur_level = []
+        cur_size = queue.size()
 
-        if curNode is None:
-            print()
-            if queue.isEmpty():
-                break
-            else:
-                queue.enqueue(None)
-        else:
-            print(curNode.data, end= " ")
-            
-            if curNode.left is not None:
-                queue.enqueue(curNode.left)
-            
-            if curNode.right is not None:
-                queue.enqueue(curNode.right)
+        for i in range(cur_size):
+            node = queue.dequeue()
+            cur_level.append(node.data)
+
+            if node.left:
+                queue.enqueue(node.left)
+            if node.right:
+                queue.enqueue(node.right)
+
+        res.append(cur_level)
+
+    return res
+
 
 print(f"Print the level order of the following tree")
-levelOrder(root)
+level_order = levelOrder(root)
+for level in level_order:
+    print(level)
 
 def countNodes(root: Optional['BinaryTree']) -> int:
 
@@ -343,6 +352,39 @@ def bottomView(root: Optional['BinaryTree']) -> List[int]:
     return res
 
 print("The Bottom view of the given Binary Tree :", bottomView(root))
+
+# Right View
+
+def left_view(root: Optional['BinaryTree']) -> List[int]:
+
+    res = []
+
+    if not root:
+        return res
+
+    queue = Queue()
+    queue.enqueue(root)
+
+    while not queue.isEmpty():
+        level_left = None
+        cur_size = queue.size()
+
+        for i in range(cur_size):
+            node = queue.dequeue()
+            if level_left is None:
+                level_left = node.data
+
+            if node.left:
+                queue.enqueue(node.left)
+            if node.right:
+                queue.enqueue(node.right)
+
+        res.append(level_left)
+
+    return res
+
+print("The Left view of the given Binary Tree :", left_view(root))
+
 
 
     
