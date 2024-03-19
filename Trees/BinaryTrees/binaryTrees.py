@@ -272,8 +272,78 @@ def verticalOrder(root: Optional['BinaryTree']) -> List[List[int]]:
 
     return res
 
-
 print("The Vertical Order Traversal of the given Binary Tree :", verticalOrder(root))
+
+def topView(root: Optional['BinaryTree']) -> List[int]:
+
+    if not root:
+        return []
+    
+    column_items = dict()
+
+    queue = Queue()
+    queue.enqueue((0, root))
+
+    min_x, max_x = float("inf"), float("-inf")
+
+    res = []
+
+    while not queue.isEmpty():
+
+        x, node = queue.dequeue()
+
+        min_x = min(min_x, x)
+        max_x = max(max_x, x)
+
+        if column_items.get(x, None) is None:
+            column_items[x] = node.data
+
+        if node.left:
+            queue.enqueue((x - 1, node.left))
+        if node.right:
+            queue.enqueue((x+1, node.right))
+
+    for level in range(min_x, max_x + 1):
+        res.append(column_items[level])
+
+    return res
+
+print("The Top Order view of the given Binary Tree :", topView(root))
+
+def bottomView(root: Optional['BinaryTree']) -> List[int]:
+
+    if not root:
+        return []
+    
+    min_col, max_col = float("inf"), float("-inf")
+
+    column_items = defaultdict(int)
+
+    queue = Queue()
+    queue.enqueue((0, root))
+
+    while not queue.isEmpty():
+        col, node = queue.dequeue()
+
+        min_col = min(min_col, col)
+        max_col = max(max_col, col)
+
+        column_items[col] = node.data
+
+        if node.left:
+            queue.enqueue((col - 1, node.left))
+        if node.right:
+            queue.enqueue((col + 1, node.right))
+
+    res = []
+
+    for level in range(min_col, max_col + 1):
+        res.append(column_items[level])
+
+    return res
+
+print("The Bottom view of the given Binary Tree :", bottomView(root))
+
 
     
 
