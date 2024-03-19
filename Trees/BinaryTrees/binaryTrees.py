@@ -385,6 +385,38 @@ def left_view(root: Optional['BinaryTree']) -> List[int]:
 
 print("The Left view of the given Binary Tree :", left_view(root))
 
+def right_view(root: Optional['BinaryTree']) -> List[int]:
+
+    res = []
+
+    if not root:
+        return res
+
+    queue = Queue()
+    queue.enqueue(root)
+
+    while not queue.isEmpty():
+
+        level_right = 0
+        cur_size = queue.size()
+
+        for i in range(cur_size):
+
+            node = queue.dequeue()
+            level_right = node.data
+
+            if node.left:
+                queue.enqueue(node.left)
+
+            if node.right:
+                queue.enqueue(node.right)
+
+        res.append(level_right)
+
+    return res
+
+print("The Right view of the given Binary Tree :", right_view(root))
+        
 
 
     
