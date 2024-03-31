@@ -45,6 +45,24 @@ class BST:
 
         return result
     
+    def _isPresent_recursive(self, cur_node: Node, value) -> bool:
+        if not cur_node:
+            return False
+        if cur_node.value == value:
+            return True
+        elif value < cur_node.value:
+            return self._isPresent_recursive(cur_node.left, value)
+        else: return self._isPresent_recursive(cur_node.right, value)
+    
+    def isPresent(self, value: int) -> bool:
+        if not self.root:
+            return False
+        else: return self._isPresent_recursive(self.root, value)
+        
+
+        
+
+    
     
 # Example Usage
 bst = BST()
@@ -57,8 +75,11 @@ bst.insert(60)
 bst.insert(80)
 
 # Print in-order traversal of the BST
+print("Printing the binary Tree")
 print(bst.getBST(bst.root))
-        
+value = 30
+print(f"Value {value} in BST :", bst.isPresent(value))
+
 
 
     
