@@ -14,6 +14,9 @@ class BST:
     def __init__(self):
         self.root = None
 
+    def getRoot(self):
+        return self.root
+
     def insert(self, value: int):
         if not self.root:
             self.root = Node(value)
@@ -183,13 +186,41 @@ bst.printLevelOrderBST()
 print("sorted after deletion :", bst.sortBST())
 printSegue()
 
+# Print in range
+# X = 30, Y = 70 (INCLUSIVE)
 x = 0
 y = 70
 print(f"Printing the BST Nodes whose values are in range {x} to {y}")
 bst.printInRange(x, y)
+print()
+printSegue()
 
-# Print in range
-# X = 30, Y = 70 (INCLUSIVE)
+# Root to Leaf paths
+def path_to_leaf(root: Node):
+
+    path = []
+
+    def printPath(root: Node, path: List[int]):
+
+        if root is None:
+            return
+
+        # Pre order traversal :: Root -> Left -> Right
+        path.append(root.value)
+
+        if root.left is None and root.right is None:
+            print(path)
+
+        printPath(root.left, path)
+        printPath(root.right, path)
+        path.pop()
+
+    printPath(root, path)
+
+print("Printing all the paths to Leaf in the BST")
+path_to_leaf(bst.getRoot())
+
+
 
 
 
