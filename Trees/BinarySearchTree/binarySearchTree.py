@@ -132,6 +132,24 @@ class BST:
         if self.root:
             self._delete(self.root, value)
 
+    def printInRange(self, x: int, y: int):
+        if self.root:
+            self._printInRange(self.root, x, y)
+        else: print("BST is empty")
+
+    def _printInRange(self, root: Node, x: int, y: int):
+        if not root:
+            return
+        if x <= root.value <= y:
+            self._printInRange(root.left, x, y)
+            print(root.value, end=" ")
+            self._printInRange(root.right, x, y)
+        elif y <= root.value:
+            self._printInRange(root.left, x, y)
+        else:
+            self._printInRange(root.right, x, y)
+
+
 
 # Example Usage
 bst = BST()
@@ -164,6 +182,19 @@ print("Level order after deletion")
 bst.printLevelOrderBST()
 print("sorted after deletion :", bst.sortBST())
 printSegue()
+
+x = 0
+y = 70
+print(f"Printing the BST Nodes whose values are in range {x} to {y}")
+bst.printInRange(x, y)
+
+# Print in range
+# X = 30, Y = 70 (INCLUSIVE)
+
+
+
+
+
 
 
   
