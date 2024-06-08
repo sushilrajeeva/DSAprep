@@ -162,5 +162,18 @@ def count_set_bits(N: int) -> bool:
 number = 84
 print(f"number of set bits in {number}:", count_set_bits(number))
 
+# Check if the number is even or odd
+new_block("Count number of set bits")
+
+def oddEven(N: int) -> bool:
+    
+    # if first bit is set it is odd else it is even
+    return "even" if (N>>0) & 1 == 0 else "odd"
+    
+
+# Example usage
+number = 82
+print(f"number of set bits in {number}:", oddEven(number))
+
 
 
