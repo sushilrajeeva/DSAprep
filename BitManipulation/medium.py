@@ -35,3 +35,18 @@ goal = 4
 print(f"Given start: {start} and goal: {goal}")
 print("Number of bits required to flip:", minimum_bit_flip(start, goal))
 
+# Find the number that appears odd number of time
+new_block("Find the number that appears odd number of time")
+
+def getOddRepeatNum(arr: List[int]) -> int:
+
+    xor = 0
+
+    for ele in arr:
+        xor ^= ele
+
+    return xor
+
+arr = [4, 1, 3, 1, 3]
+print(f"Given arr: {arr}")
+print("result ->", getOddRepeatNum(arr))
