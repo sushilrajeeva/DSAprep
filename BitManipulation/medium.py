@@ -50,3 +50,58 @@ def getOddRepeatNum(arr: List[int]) -> int:
 arr = [4, 1, 3, 1, 3]
 print(f"Given arr: {arr}")
 print("result ->", getOddRepeatNum(arr))
+
+# Print all the subsets of an array of numbers
+# Note number of subsets  = 2^n => (1 << n)
+new_block("Print all the subsets of an array of numbers")
+
+def powerSet(arr: List[int]) -> List[List[int]]:
+
+    # no of columns/elements in arr
+    n = len(arr)
+    # no of rows / number of subsets [2^n]
+    rows = 1 << n
+
+    ans = []
+
+    for row in range(rows):
+        temp = []
+        for col in range(n):
+            if row & (1<<col):
+                temp.append(arr[col])
+        
+        ans.append(temp)
+
+    return ans
+
+arr = [1, 2, 3]
+print(f"Given arr: {arr}")
+print("Subsets:", powerSet(arr))
+
+# Xor of numbers in range left to right
+# You are given two integers L and R, your task is to find the XOR of elements of the range [L, R].
+
+new_block("Xor of numbers in range left to right")
+
+def xorRange(left: int, right: int) -> int:
+
+    # Step 1: logic to get xor or 1 to n
+    # Pattern to notice is below, every 4 number have same pattern
+    def xor_n(num: int) -> int:
+        if num%4 == 0:
+            return num
+        elif num%4 == 1:
+            return 1
+        elif num%4 == 2:
+            return num+1
+        else: return 0
+
+    # step 2: xor of 1 to left-1 result and xor of 1 to right result when we xor these both we will get xor of left to right
+
+    return xor_n(left-1) ^ xor_n(right)
+
+left, right = 4, 8
+print(f"Given left: {left} and right: {right}")
+print(f"Xor of numbers from {left} to {right} =", xorRange(left, right))
+
+    
